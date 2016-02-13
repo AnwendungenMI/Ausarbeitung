@@ -1,0 +1,96 @@
+%hidelinks for hide color of clickable references
+%scrreprt koma-script no idea what koma script does
+\documentclass[hidelinks,12pt,a4paper, liststotoc, bibtotoc]{scrreprt}
+%                     liststotoc,            % Tabellen & Abbildungsverzeichnis ins TOC 
+%                     %idxtotoc,             % Index ins TOC 
+%                     bibtotoc,               % Bibliographie ins TOC 
+%                     bibtotocnumbered,    % Bibliographie im TOC nummeriert 
+%                     %liststotocnumbered, % Alle Verzeichnisse im TOC nummeriert 
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+%\usepackage[T1]{fontenc}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{kpfonts}
+\usepackage[doublespacing]{setspace}
+\onehalfspacing
+%\usepackage{fourier}
+%\usepackage[left=2.5cm,right=2cm,top=4cm,bottom=4cm]{geometry}
+
+%\usepackage{csquotes}
+
+%%Paket für Verweise auf bestimmte Seiten (klicken auf das Inhaltsverzeichnis)
+\usepackage{hyperref}
+
+%%Paket um die Zitierweise + Literaturverzeichnis einstellen zu können
+\usepackage[style=authoryear-ibid,backend=biber]{biblatex}
+
+%nicht anrücken nach absatz
+\setlength{\parindent}{0pt}
+
+
+%%Paket für Kopf- und Fußzeile
+\usepackage[]{scrlayer-scrpage}
+%%Kopfzeile mit dem aktuellen Unterkapitel füllen
+\automark{section}
+
+\usepackage{lscape} % Querformat includegraphics
+
+\pagestyle{scrheadings}
+
+%%information for titlepage
+\title{Titel der Arbeit}
+\author{Autoren der Arbeit}
+\date{\today}
+%\thanks{Dankesworte}
+
+%%bib-file einbinden
+%\addbibresource{Literature.bib}
+
+%%Zähler um am Ende auf der Bibliography Seite römisch weiter zählen zu können
+\newcounter{pageNumberAfterContent}
+\begin{document}
+
+%Titelseite erstellen
+
+
+
+%%Seitennummerierung neu beginnen, Zahlen [arabic], röm.Zahlen [roman,Roman], Buchstaben [alph,Alph]
+\pagenumbering{Roman}
+
+
+%Heißt erstelle ein Inhaltsverzeichnis
+\tableofcontents
+
+
+
+%\listoffigures
+
+%\listoftables
+
+\clearpage
+
+%%Seitenzahl speichern
+\setcounter{pageNumberAfterContent}{\value{page}}
+
+\pagenumbering{arabic}
+
+\include{01_Test}
+
+%\clearpage
+%\pagenumbering{Roman}
+
+%%Seitenzahl auf gespeicherte Zahl setzen
+
+%\setcounter{page}{\thepageNumberAfterContent}
+%\newpage
+%\printbibliography
+
+\end{document}
