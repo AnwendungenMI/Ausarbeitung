@@ -20,7 +20,7 @@
 \usepackage{lmodern}
 \usepackage{kpfonts}
 \usepackage[doublespacing]{setspace}
-\onehalfspacing
+\onehalfspace
 %\usepackage{fourier}
 %\usepackage[left=2.5cm,right=2cm,top=4cm,bottom=4cm]{geometry}
 
@@ -31,10 +31,6 @@
 
 %%Paket um die Zitierweise + Literaturverzeichnis einstellen zu können
 \usepackage[style=authoryear-ibid,backend=biber]{biblatex}
-
-%nicht anrücken nach absatz
-\setlength{\parindent}{0pt}
-
 
 %%Paket für Kopf- und Fußzeile
 \usepackage[]{scrlayer-scrpage}
@@ -52,7 +48,7 @@
 %\thanks{Dankesworte}
 
 %%bib-file einbinden
-%\addbibresource{Literature.bib}
+\addbibresource{Literatur.bib}
 
 %%Zähler um am Ende auf der Bibliography Seite römisch weiter zählen zu können
 \newcounter{pageNumberAfterContent}
@@ -82,15 +78,17 @@
 
 \pagenumbering{arabic}
 
-\include{01_Test}
-
+\input{Einleitung}
+\clearpage
+\input{Bildakquise}
+\input{TODO}
 %\clearpage
 %\pagenumbering{Roman}
 
 %%Seitenzahl auf gespeicherte Zahl setzen
 
 %\setcounter{page}{\thepageNumberAfterContent}
-%\newpage
-%\printbibliography
+\newpage
+\printbibliography
 
 \end{document}
