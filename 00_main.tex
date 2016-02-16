@@ -20,17 +20,24 @@
 \usepackage{lmodern}
 \usepackage{kpfonts}
 \usepackage[doublespacing]{setspace}
-\onehalfspace
+\onehalfspacing
 %\usepackage{fourier}
 %\usepackage[left=2.5cm,right=2cm,top=4cm,bottom=4cm]{geometry}
 
-%\usepackage{csquotes}
+% Beschreibund von Abbildungen NICHT einrücken 
+\setcapindent{0pt}
 
 %%Paket für Verweise auf bestimmte Seiten (klicken auf das Inhaltsverzeichnis)
 \usepackage{hyperref}
 
 %%Paket um die Zitierweise + Literaturverzeichnis einstellen zu können
 \usepackage[style=authoryear-ibid,backend=biber]{biblatex}
+
+%nicht anrücken nach absatz
+\setlength{\parindent}{0pt}
+
+%command um shell Kommandos schön darzustellen
+\newcommand{\shellcmd}[1]{\indent\indent\texttt{\footnotesize\# #1}}
 
 %%Paket für Kopf- und Fußzeile
 \usepackage[]{scrlayer-scrpage}
@@ -48,7 +55,7 @@
 %\thanks{Dankesworte}
 
 %%bib-file einbinden
-\addbibresource{Literatur.bib}
+%\addbibresource{Literature.bib}
 
 %%Zähler um am Ende auf der Bibliography Seite römisch weiter zählen zu können
 \newcounter{pageNumberAfterContent}
@@ -81,6 +88,7 @@
 \input{Einleitung}
 \clearpage
 \input{Bildakquise}
+\input{05_SonoScape_Analyse}
 \input{TODO}
 %\clearpage
 %\pagenumbering{Roman}
