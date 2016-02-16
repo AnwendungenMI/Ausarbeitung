@@ -2,3 +2,13 @@ Miktex 2.9 32bit
 Texmaker
 Im texmaker biber % bei bibtex einstellen
 dann den zweiten punkt bei quickbuild auswählen
+
+bei eigenen latex packeten in der präamble (00_main) bitte alle packete einfügen z.b.
+
+%%%%%%%%%%%%%%%%%%%% ANDYS PACKETE
+p1
+p2
+p3
+p4
+%%%%%%%%%%%%%%%%%%%%
+
