@@ -45,12 +45,12 @@ Um eine solche Halterung zu bauen, wurden Modelliermasse, Kabelbinder, eine Hül
 
 Für die Evaluierung der Arbeit \textbf{(siehe Kapitel X)} wurde ein Phantom angefertigt. Dieses Phantom besteht aus einer Gelatineplatte, in der sich zwei 1-Cent Münzen befinden. Eben genannte Gelatineplatte besteht aus 100ml Wasser, 50ml Isopropyl-Alkohol, 50ml Glycerin und brauner Lebensmittelfarbe.
 
-\section{YUV-Farbmodell}
+\section{YUV-Farbmodell} \label{YUV}
 
 Bei dem YUV-Farbmodell wird die Bildhelligkeit von der Farbdifferenz getrennt. Hierbei beschreibt die Y-Komponente die Luminanz und die U- und V-Komponenten die Chrominanz. Historisch sind die YUV-Modelle eng mit der Entwicklung des Farbfernsehens verknüpft, da man ein Verfahren benötigte, durch zusätzliche Übertragung der Farbkomponente das Farbfernsehen bei Weiterbenutzung der alten Schwarzweiß-Empfänger zu ermöglichen. \textbf{(Quelle 14)}
 \\
 \\
-Die Aufteilung der einzelnen Komponenten in einem einzelnen Frame im NV21-Format, welches Bilder im YUV-Farbmodell darstellt, lässt sich wie in Abbildung \ref{fig:YUV_Frame} vorstellen:
+Die Aufteilung der einzelnen Komponenten in einem einzelnen Frame im NV12-Format, welches Bilder im YUV-Farbmodell darstellt, lässt sich wie in Abbildung \ref{fig:YUV_Frame} vorstellen:
 
 
 \begin{figure}[h]
@@ -73,7 +73,7 @@ Wie man unschwer erkennen kann, befinden sich die Informationen bezüglich der L
 	\label{fig:YUV_Array}
 \end{figure}
 
-\section{RGB-Farbmodell und Umrechnung}
+\section{RGB-Farbmodell und Umrechnung} \label{YUV_RGBKonvert}
 
 Das RGB-Farbmodell ist ein additives Farbmodell, bei dem die Farben durch Mischung der Grundfarben Rot, Grün und Blau dargestellt werden. Ein digitales Farbbild besitzt dabei für jeden Bildpunkt drei Werte, die die Anteile an Rot, Grün und Blau beschreiben. Der Wertebereich erstreckt sich dabei üblicherweise zwischen 0 und 255. Man kann sich dies als drei M x N Matrizen vorstellen: pro Grundfarbe eine Matrix, in der für jeden Pixel der Anteil der entsprechenden Grundfarbe gespeichert ist (siehe Abbildung \ref{fig:RGB-Matrizen}). \textbf{(Quelle 15)}
 
