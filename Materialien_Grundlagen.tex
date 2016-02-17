@@ -9,7 +9,7 @@ Für eine zufriedenstellende Umsetzung der Anforderungen \textbf{(siehe Kapitel 
 \\
 Wir haben uns aufgrund oben noch einmal kurz zusammengefasster Anforderungen für das Modell G4 der Marke LG entschieden.  Das Display des LG G4 ist ein AH-IPS (Advanced High Performance – In-Plane Switching) Display vom Typ Curved IPS Quantum Display. Die IPS Technologie verringert die Blickwinkelabhängigkeit des Kontrastes \textbf{(Quelle 2)}. Das Display besitzt eine Diagonale von 14cm und eine Auflösung von 2560 x 1440 Pixel (Quad HD). Die Punktdichte beträgt entsprechend 538 ppi. Der Prozessor des Smartphones ist ein 6 Kern Qualcomm Snapdragon 808 mit einer Taktrate von 1,8 GHz. Es verfügt über einen Arbeitsspeicher von 3 GB. Das Betriebssystem des LG G4 ist ein natives Android der Version 5.1. \textbf{(Quelle 1)} 
 
-\section{Android, Android SDK und Android Studio}
+\section{Android, Android SDK und Android Studio} \label{Android}
 
 Android ist ein Betriebssystem für mobile Geräte wie Smartphones oder Tablets \textbf{(Quelle 3)}, ursprünglich entwickelt von der Firma Android, Inc., welche 2005 von Google aufgekauft wurde \textbf{(Quelle 4)}. Mobile Anwendungen für Android Systeme werden in der Programmiersprache Java geschrieben und anschließend in Androids eigenes Format DEX (Dalvik Executable Format) konvertiert \textbf{(Quelle 5)}. Die Android UI Guidelines \textbf{(Quelle 6)} geben Richtlinien für das Design der Benutzeroberfläche von Android Anwendungen vor.
 \\
@@ -28,7 +28,7 @@ Zum gemeinsamen Entwickeln an der mobilen Anwendung wurde ein kostenfreies Repos
 Das für diese Arbeit eingesetzte Ultraschallgerät stammt von dem 2002 in Shenzhen, China gegründeten Unternehmen SonoScape Medical Corp. Zu den Produkten von SonoScape Medical Corp. zählen hauptsächlich Farb-Doppler Ultraschall Systeme, aber auch Endoskopie- und Elektrokardiographie-Systeme \textbf{(Quelle 10)}.
 \\
 \\
-In dieser Arbeit wurde das Modell S2 von SonoScape verwendet. Das Betriebssystem des Geräts ist ein angepasstes Linux Ubuntu 10.04. Das Gerät verfügt über einen hochauflösenden 15" Weitwinkel LCD-Monitor. Es verfügt über eine Farbanzeige, was bei diesem Modell nicht standardmäßig ist. Die zwei Sondenanschlüsse mit Sondenhalter ermöglichen verschiedenste Anwendungen, wie unter anderem Abdominal, OB (Oberbauch), GYN (Gynäkologie), Gefäße, Urologie oder Small Parts. Die integrierte M-Tuning Technologie ermöglicht eine automatische B-Bild bzw. Doppler Optimierung. Die Bildfunktionen des SonoScape S2 sind B, B+B, B+M und 4B. Der integrierte Akku hat eine Stunde Laufzeit und die Anschlüsse des Geräts sind VGA, Video out, USB, S-Video, EKG Modul, DICOM 3.0. Zudem verfügt es über eine interne digitale Bildspeicherung. \textbf{(Quelle 13)}
+In dieser Arbeit wurde das Modell S2 von SonoScape verwendet. Das Betriebssystem des Geräts ist ein modifiziertes Linux Ubuntu 10.04. Das Gerät verfügt über einen hochauflösenden 15" Weitwinkel LCD-Monitor. Es verfügt über eine Farbanzeige, was bei diesem Modell nicht standardmäßig ist. Die zwei Sondenanschlüsse mit Sondenhalter ermöglichen verschiedenste Anwendungen, wie unter anderem Abdominal, OB (Oberbauch), GYN (Gynäkologie), Gefäße, Urologie oder Small Parts. Die integrierte M-Tuning Technologie ermöglicht eine automatische B-Bild bzw. Doppler Optimierung. Die Bildfunktionen des SonoScape S2 sind B, B+B, B+M und 4B. Der integrierte Akku hat eine Stunde Laufzeit und die Anschlüsse des Geräts sind VGA, Video out, USB, S-Video, EKG Modul, DICOM 3.0. Zudem verfügt es über eine interne digitale Bildspeicherung. \textbf{(Quelle 13)}
 
 \section{Der Teilerspiegel}
 
@@ -45,12 +45,12 @@ Um eine solche Halterung zu bauen, wurden Modelliermasse, Kabelbinder, eine Hül
 
 Für die Evaluierung der Arbeit \textbf{(siehe Kapitel X)} wurde ein Phantom angefertigt. Dieses Phantom besteht aus einer Gelatineplatte, in der sich zwei 1-Cent Münzen befinden. Eben genannte Gelatineplatte besteht aus 100ml Wasser, 50ml Isopropyl-Alkohol, 50ml Glycerin und brauner Lebensmittelfarbe.
 
-\section{YUV-Farbmodell}
+\section{YUV-Farbmodell} \label{YUV}
 
 Bei dem YUV-Farbmodell wird die Bildhelligkeit von der Farbdifferenz getrennt. Hierbei beschreibt die Y-Komponente die Luminanz und die U- und V-Komponenten die Chrominanz. Historisch sind die YUV-Modelle eng mit der Entwicklung des Farbfernsehens verknüpft, da man ein Verfahren benötigte, durch zusätzliche Übertragung der Farbkomponente das Farbfernsehen bei Weiterbenutzung der alten Schwarzweiß-Empfänger zu ermöglichen. \textbf{(Quelle 14)}
 \\
 \\
-Die Aufteilung der einzelnen Komponenten in einem einzelnen Frame im NV21-Format, welches Bilder im YUV-Farbmodell darstellt, lässt sich wie in Abbildung \ref{fig:YUV_Frame} vorstellen:
+Die Aufteilung der einzelnen Komponenten in einem einzelnen Frame im NV12-Format, welches Bilder im YUV-Farbmodell darstellt, lässt sich wie in Abbildung \ref{fig:YUV_Frame} vorstellen:
 
 
 \begin{figure}[h]
@@ -73,7 +73,7 @@ Wie man unschwer erkennen kann, befinden sich die Informationen bezüglich der L
 	\label{fig:YUV_Array}
 \end{figure}
 
-\section{RGB-Farbmodell und Umrechnung}
+\section{RGB-Farbmodell und Umrechnung} \label{YUV_RGBKonvert}
 
 Das RGB-Farbmodell ist ein additives Farbmodell, bei dem die Farben durch Mischung der Grundfarben Rot, Grün und Blau dargestellt werden. Ein digitales Farbbild besitzt dabei für jeden Bildpunkt drei Werte, die die Anteile an Rot, Grün und Blau beschreiben. Der Wertebereich erstreckt sich dabei üblicherweise zwischen 0 und 255. Man kann sich dies als drei M x N Matrizen vorstellen: pro Grundfarbe eine Matrix, in der für jeden Pixel der Anteil der entsprechenden Grundfarbe gespeichert ist (siehe Abbildung \ref{fig:RGB-Matrizen}). \textbf{(Quelle 15)}
 

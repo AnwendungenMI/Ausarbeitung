@@ -7,23 +7,22 @@ Da es durch das BIOS Passwort möglich ist das System genauer zu untersuchen und
 \begin{large}
 \textbf{Sicherung}\\\\
 \end{large}
-Um das SonoScape zu analysieren müssen verschiedene Ansätze ausgetestet werden. Da bei dem Testen der Ansätze Veränderungen am System vorgenommen werden, muss es gesichert werden. So ist gewährleistet, dass im schlimmsten Fall eine Sicherungskopie existiert, um diese wieder auf das SonoScape schreiben zu können. Die Sicherung wurde mit dem dd\footnote{Der dd Befehl ist standardmäßig im Linux Kernel enthalten und kann den Festplatteninhalt blockweise kopieren. } Befehl unter Linux durchgeführt. Dabei wird eine gesamte Festplatte Block für Block auf ein anderes Speichermedium übertragen.
-
-\section{Betriebssystemanalyse}
-
+Um das SonoScape zu analysieren müssen verschiedene Ansätze ausgetestet werden. Da bei dem Testen der Ansätze Veränderungen am System vorgenommen werden, muss es gesichert werden. So ist gewährleistet, dass im schlimmsten Fall eine Sicherungskopie existiert, um diese wieder auf das SonoScape schreiben zu können. Die Sicherung wurde mit dem dd\footnote{Der dd Befehl ist standardmäßig im Linux Kernel enthalten und kann den Festplatteninhalt blockweise kopieren. } Befehl unter Linux durchgeführt. Dabei wird eine gesamte Festplatte Block für Block auf ein anderes Speichermedium übertragen.\\\\
+%\section{Betriebssystemanalyse}
 Im Rahmen der Betriebssystemanalyse sind einige Probleme aufgetreten. Zum einen war das häufige hoch und runter fahren des SonoScape Gerätes sehr zeitaufwändig. Des weiteren war es nicht möglich ein deutsches Tastatur Layout einzustellen, was bei diversen Kommandozeilen Befehlen zu starken Verzögerungen in der Eingabe geführt hat. Dazu kam der hohe Wert des Gerätes, weswegen äußerste Vorsicht bei der Benutzung geboten war.\\
 Aus diesen Gründen wurde das image\footnote{Blockweise Kopie des Festplatteninhalts}, also das Ergebnis der Sicherung, auf eine virtuelle Maschine übertragen. So wurden alle genannten Probleme gelöst und zusätzlich die Möglichkeit, geschaffen mit jedem Rechner an der Aufgabe zu arbeiten, vor allem auch parallel. Dazu kam die Möglichkeit eine weitere virtuelle Maschine einzurichten. Entsprechend des Betriebssystems des SonoScape wurde Ubuntu 10.04 32 bit für die zweite virtuelle Maschine gewählt.\\
-Über die Software VirtualBox kann der Festplatteninhalt eines images, wie vom SonoScape image, innerhalb der virtuellen Maschine verfügbar gemacht werden. Das bedeutet, dass es dadurch möglich ist mit dem Ubuntu Betriebssystem, auf den Festplatteninhalt der virtuellen Box ,indem das SonoScape simuliert wird, zuzugreifen. Genauer gesagt kann herausgefunden werden warum ein Benutzer keine Interaktionsmöglichkeiten, abgesehen von der Bedienung der Ultraschallsoftware, mit dem System hat.\\
 \begin{wrapfigure}[11]{l}{0.33\textwidth}
+\vspace{-19pt}
 \centering
 \includegraphics*[width =0.33\textwidth]{Sonoscape_Analyse/Anzahl_Festplatten}
 \caption{{\small Übersicht über die 4 Partitionen der Festplatte des SonoScape Gerätes}}
 \label{fig:Festplatte}
 \end{wrapfigure}
+Über die Software VirtualBox kann der Festplatteninhalt eines images, wie vom SonoScape image, innerhalb der virtuellen Maschine verfügbar gemacht werden. Das bedeutet, dass es dadurch möglich ist mit dem Ubuntu Betriebssystem, auf den Festplatteninhalt der virtuellen Box ,indem das SonoScape simuliert wird, zuzugreifen. Genauer gesagt kann herausgefunden werden warum ein Benutzer keine Interaktionsmöglichkeiten, abgesehen von der Bedienung der Ultraschallsoftware, mit dem System hat.\\
 In der virtuellen Ubuntu Maschine kann nun die Partitionierung, Größe und der Inhalt der einzelnen Partitionen gesehen und auch manipuliert werden, siehe Abbildung \ref{fig:Festplatte}. Da das dieselben Daten sind die auch von der virtuellen SonoScape Maschine benutzt werden, kann das Verhalten nicht nur analysieren sondern auch direkt verändert werden.
 Zum Beispiel das direkte starten der Ultraschallsoftware unterbinden, vorher andere Programme starten wie ein Programm um den Bildschirm mitzuschneiden oder aber einfach eine Konsole zu öffnen.
 %\checkheight{\includegraphics[width=0.9\linewidth]{Sonoscape_Analyse/Anzahl_Festplatten}}
-\subsection{System Struktur}
+\section{System Struktur}
 Damit das System ordnungsgemäß manipuliert werden kann, ohne die Kernfunktionalität zu beschädigen, muss erst entschlüsselt werden wie genau das System aufgebaut ist. Dazu ist es wichtig den eigentlichen boot Vorgang zu verstehen, denn dieser ist elementarer Bestandteil des angepassten Betriebssystems.\\\\
 \begin{large}
 \textbf{Initramfs}\\\\
@@ -42,7 +41,7 @@ Das SonoScape Gerät benutzt das initramfs (initial ram filesystem) Konzept. Im 
 	%\vspace{-1.5em}
 	\label{fig:run_all_app}
 \end{figure}
-Zweitens ist es leichter den boot Prozess zu modifizieren, wie es auf dem SonoScape Gerät getan wurde. Zusätzliche boot Logik wird nun einfach über das initramfs hinzugefügt werden, ohne den eigentlich Kernel zu modifizieren. (QUELLE http://lwn.net/Articles/14776/)\\\\
+Zweitens ist es leichter den boot Prozess zu modifizieren, wie es auf dem SonoScape Gerät getan wurde. Zusätzliche boot Logik wird nun einfach über das initramfs hinzugefügt werden, ohne den eigentlich Kernel zu modifizieren. (QUELLE http://lwn.net/Articles/14776/ benutzen oder weglassen?)\\
 Die Logik des initramfs heißt Casper und befindet sich in einer 5,4GB großen Parition (siehe Abbildung \ref{fig:RAM_Dateisystem}), die nicht als logisches Laufwerk gemountet wird, sondern während des boot Prozesses als Arbeitsspeicherdateisystem. Sollten innerhalb dieses RAM\footnote{random access memory, Arbeitsspeicher auf deutsch} Dateisystems Änderungen vorgenommen werden, sind diese nach dem nächsten Neustart nicht persistent gespeichert, sodass Installationen von jeglicher Software revidiert werden. Trotzdem ist es möglich Software zu installieren und für die aktuelle Sitzung zu benutzen, die Software muss dementsprechend auch mit jedem Neustart des Systems neu installiert werden.
 
 Das RAM Dateisystem modifiziert den boot Vorgang nun so, dass bestimmte, vom Hersteller generierte  Skripte, ausgeführt werden. Dazu wird die 11GB Partition als persistente Festplatte gemountet, denn auf dieser befinden sich die zusätzlichen Skripte.\\
@@ -51,7 +50,7 @@ Diese Skripte steuern, ergänzen und beenden den letzten Teil des boot Vorgangs.
 
 In Abbildung \ref{fig:run_all_app} ist ein Auszug zu sehen, von dem Skript das über das RAM Dateisystem aufgerufen wird. Dieses Skript ruft selbst weitere Skripte auf die zum Beispiel Software installieren, bestimmte Ethernet Konfigurationen einstellen oder andere Systemeigenschaften verändern. Für die Manipulation des boot Vorgangs ist vor allem die rot umrandete Zeile wichtig, denn diese startet ein weiteres Skript, das letztendlich die Ultraschallsoftware startet. Nachdem die Software gestartet wurde ist es nicht mehr möglich weitere Befehle auf dem Betriebssystem auszuführen.\\
 
-\subsection{Root Zugriff}
+\section{Root Zugriff}
 
 \begin{wrapfigure}{r}{0.5\textwidth}
 \centering  	
@@ -65,7 +64,7 @@ Danach muss die rot markierte Zeile gelöscht werden, denn diese ist für das bo
 Dieses Terminal hat zwar root Rechte, jedoch befindet es sich nicht im echten Dateisystem sondern in dem Dateisystem des Arbeitsspeichers. Das hat zur Folge, dass nicht auf das persistente Dateisystem zugegriffen werden kann. Also ist es nicht möglich über dieses Terminal relevante Änderungen durchzuführen.
 Der zweite Versuch hingegen basierte auf der Systemstruktur. Dafür wird genau auf das \textit{run all app} Skript eingegangen. In Abbildung \ref{fig:run_all_app} bedeutet der rot umrandete Kasten, dass die Ultraschallsoftware über ein weiteres Skript gestartet wird. Nach dem Auskommentieren dieser Zeile und dem Einfügen der Zeile \shellcmd{gnome -terminal} wurde nicht nur der Start der Ultraschallsoftware verhindert, sondern auch ein Terminal geöffnet. Da das Skript \textit{run all app} mit root Rechten aufgerufen wird, hat auch das Terminal das in dem Skript aufgerufen wird automatisch ebenfalls root Rechte.
 
-\subsection{Netzwerk Verbindung}
+\section{Netzwerk Verbindung}
 
 Aus den funktionalen Anforderungen (siehe Kapitel \ref{funktionale_Anforderungen} ergibt sich die Notwendigkeit das SonoScape Gerät mit einem Smartphone zu verbinden. Im besten Fall kann die Verbindung direkt zwischen Smartphone und SonoScape Gerät aufgebaut werden. Dazu muss das Smartphone einen Hotspot aufmachen, zu dem sich das SonoScape Gerät über ein Ethernet Kabel oder über WLAN verbinden kann. Da ein Kabel zwischen Smartphone und SonoScape Gerät, die Benutzung des Ultraschallkopfes umständlicher macht, fällt die Kabelvariante raus.\\
 Nun muss auf dem SonoScape ein WLAN Adapter benutzbar gemacht werden, damit sich Smartphone und SonoScape verbinden können.\\\\
