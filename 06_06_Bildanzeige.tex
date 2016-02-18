@@ -1,0 +1,14 @@
+\section{Bildanzeige}
+Die Anzeige der übertragenden Ultraschallbilder wird in der mobilen Anwendung durch die Verwendung einer ImageView durchgeführt. ImageView ist ein bereitgestelltes Widget der Android API welches für die Anzeige von Komponenten (bspw. Buttons, Eingabefelder, Bitmaps, etc.) verwendet werden kann. Eine View besteht aus einen rechteckigen Bereich auf der Oberfläche in das weitere Objekte eingebettet werden für die wiederum Ereignisbehandlungen implementiert werden können. \\
+QUELLE: http://developer.android.com/reference/android/widget/ImageView.html   \\
+Die Framerate der übertragenden Ultraschallbilder variiert zwischen 12 und 30 Bildern pro Sekunde. Die ImageView wird dementsprechend häufig aktualisiert und die Anzeige durch die bereitgestellte onDraw()-Methode beansprucht. Da die ImageView für diese hohe Aktualisierungsrate und einen kontinuierlichen Wechsel der anzuzeigenden Bilder nicht ausgelegt ist, musste die ImageView um entsprechende Listener und Ereignisbehandlungen erweitert werden. 
+Dafür wurde eine neue Klasse „MyImageView“ erstellt, die von der Klasse „ImageView“ erbt, in der die Methode „onDraw“ überschrieben wurde, sodass diese ein Callback auslöst und die entsprechenden Listener darüber informiert, dass die Anzeige des Bildes abgeschlossen ist. \\
+Während der Verwendung des MyImageView-Objekts wird der aktuelle Status durch entsprechende Referenzen auf die Bitmaps  nachgehalten. Die Status umfassen die Anzeige eines Ultraschallbildes, die Verarbeitung eines Ultraschallbildes und das Recyclen eines Ultraschallbildes. Der eigentliche Ablauf der Anzeige eines Ultraschallbildes gliedert sich dabei in drei Bereiche:
+
+\begin{minipage}{\textwidth}
+\begin{enumerate}
+\item Die Decodierung der Bitmaps. Dies umfasst die Verarbeitung der übertragenden Ultraschallbilder bis zur Erzeugung des fertigen Ultraschallbildes für die Anzeige.
+\item Die Anzeige der Bitmaps, wobei die Daten an die MyImageView weiter gegeben werden, der zuständige Thread aber solange gelockt wird bis das vorherige Bild vollständig angezeigt wurde. 
+\item Das Recyceln der Bilder umfasst anschließend die Entfernung des Bildes und die Freigabe des benötigten Speicherplatzes. 
+\end{enumerate}
+\end{minipage}
