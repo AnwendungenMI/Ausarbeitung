@@ -161,7 +161,7 @@ Da die Implementierung mit Hilfe der FFmpeg-Bibliothek eine zu hohe Latenz aufwi
 
 \subsection{Bildakquise mit X11Lib}
 X11Lib ist eine C++-Bibliothek, welche den direkten Zugriff auf Bilddaten des Linux-Grafiksystems ermöglicht. Zur Aufnahme des aktuell angezeigten Bildschirminhaltes kann die Funktion \textit{XGetImage()} genutzt werden, welche die Bilddaten in einem zuvor festgelegten Format in ein \textit{char-Array} abspeichert.\\
-Ein Vorteil dieser Funktion ist die hohe Performance. Die Bildaufnahme dauerte auf dem Testgerät lediglich acht Millisekunden, wodurch für die weiteren Schritte noch 198 mS verbleiben.
+Ein Vorteil dieser Funktion ist die hohe Performance. Die Bildaufnahme dauerte auf dem Testgerät lediglich acht Millisekunden, wodurch für die weiteren Schritte noch 192 mS verbleiben.
 
 \begin{lstlisting}[caption=Bildaufnahme mittels X11Lib, label=lst:capture_x11lib, language=C++]
 display = XOpenDisplay(NULL);
@@ -209,7 +209,7 @@ for(int row = 0; row < height; row++)
     }
 \end{lstlisting}
 
-\section{Kompression}
+\subsection{Kompression}
 Um die zu übertragende Datenmenge weiter zu reduzieren, wurde das LZ4-Verfahren\footcite{LZ4} zur Kompression der Bilddaten verwendet. Bei dem LZ4-Verfahren handelt es sich um eine Verlustfreie Kompression, welche für hohe Kompressions- und Dekompressionsgeschwindigkeiten optimiert ist. Dadurch ist es optimal für den gegebenen Einsatzzweck geeignet, da die Datenrate zwar relevant ist, die Latenz jedoch stark von der Vorverarbeitung eingeschränkt wird. Somit muss ein Kompromiss gefunden werden, welcher die Datenmenge reduziert ohne die Verarbeitungsdauer stark zu beeinflussen. \\
 Die unkomprimierte Größe eines Frames mit den Abmessungen $1024*768$ beträgt
 \begin{equation}
@@ -223,7 +223,42 @@ und die Redundanz
 \begin{equation}
 R_D=1-1/C_R=0.96
 \end{equation}
-Die Kompression dauerte auf dem Testgerät elf Millisekunden, womit der gesamte Vorgang vor der Übertragung 23 mS in Anspruch nimmt.\\
+Die Kompression dauerte auf dem Testgerät elf Millisekunden, womit der gesamte Vorgang vor der Übertragung 23 mS in Anspruch nimmt.
 
+\begin{lstlisting}[caption=Kompression der Rohdaten, label=lst:compression, language=C++]
+// Komprimiert die Daten aus dem Quellarray "rgb565Data" in das Zielarray "compressedFile"
+// und speichert die Laenge des komprimierten Arrays in "compressedBytes"
+compressedBytes = LZ4_compress_default(
+	rgb565Data, compressedFile, rgb565DataSize, 500000);
+\end{lstlisting}
 
+\subsection{Verarbeitung auf dem Smartphone}
+Zur Anzeige der Bilddaten auf dem Smartphone werden die komprimierten Daten mit Hilfe einer Java-Portierung der LZ4-Bibliothek\footcite{JPounzLZ4} dekomprimiert und die RGB565-Rohdaten zu einem Android-Bitmap Objekt verarbeitet. Das resultierende Frame kann dann auf der Oberfläche der Smartphone-Anwendung angezeigt werden.
+
+\begin{lstlisting}[caption=Dekompression der Daten, label=lst:decompression, language=Java]
+// Erzeuge notwendige Objekte zur Dekomprimierung
+LZ4Factory factory = LZ4Factory.safeInstance();
+LZ4FastDecompressor decompressor = factory.fastDecompressor();
+
+// Dekomprimiere die Daten
+int res = decompressor.decompress(dataBytes, decompressedData, decompressedData.length);
+
+// Wandle die Rohdaten in eine Android Bitmap Objekt um
+final Bitmap b = getBitmapFromData(decompressedData, width, height);
+\end{lstlisting}
+
+\subsection{Performance und Funktionalität}
+Die vorgestellte Implementierung hat gegenüber der FFmpeg-Variante zwei Nachteile: Sowohl die entstehende Datenmenge, als auch die Prozessorlast ist wesentlich höher. Beide Nachteile sind jedoch für den gegebenen Anwendungsfall nicht relevant, da die Prozessorlast sich in den Tests nicht auf die Leistung des Ultraschallgerätes auswirkte und die Kapazitätsreserven des verwendeten Übertragungsmediums die erhöhte Datenrate problemlos abfangen konnten.\\
+Im Gegenzug beträgt die Gesamtlatenz des Systems, also die Dauer von der Bildaufnahme auf dem Ultraschallgerät bis zur Bildanzeige auf dem Smartphone, weniger als 200 mS und ist damit um eine Größenordnung geringer als der alternative Ansatz. Die errreichte Framerate liegt zwischen 12 FPS und 30 FPS. Somit werden alle spezifizierten Anforderungen durch die Implementierung zufriedenstellend erfüllt. Zusätzlich ist die vorliegende Lösung, im Gegensatz zum FFmpeg-Basierten Ansatz, komplett verlustfrei und eröffnet damit noch weitere Möglichkeiten zur pixelgenauen Verarbeitung der Ultraschallbilder.
+
+\subsection{Optimierungspotenzial}
+Die vorliegende Implementierung kann, gerade in Bezug auf die Kompression, noch weiter Optimiert werden. Der erste Ansatz führt die Kompression für jedes Frame einzeln durch, wobei eine gesamte Dimension, die Zeitdimension, des Videostreams nicht beachtet wird.\\
+Der vorliegende Anwendungsfall hat zwei ungewöhnliche Eigenschaften, die die Zeitdimension für die Kompression relevant werden lassen:
+\begin{enumerate}
+\item{Es werden digitale Bilder abgefilmt. Damit liegt keinerlei Bildrauschen vor.}
+\item{Die übertragenen Frames sind identisch (bei stillstehendem Bild) oder haben zumindest große, identische Bereiche.}
+\end{enumerate}
+
+Diese Eigenschaften können genutzt werden, um die Kompressionsleistung noch einmal zu steigern, indem statt eines kompletten Frames nur noch die Differenz zu dem vorherigen Frame übertragen wird. Dadurch werden identische Bereiche zu Null (da es kein Bildrauschen gibt). Daten, welche eine große Anzahl aufeinanderfolgender Nullen enthalten, können wesentlich besser komprimiert werden. In vorläufigen Tests mit der LZ4-Bibliothek betrug die Größe eines komprimierten Differenzbildes nur noch ein Fünftel der Größe eines komprimierten Frames.\\
+In der aktuellen Implementierung wurde dieser Ansatz nicht weiter verfolgt, da die Kompressionsleistung bereits ausreichte und alle Anforderungen erfüllt wurden. Für zukünftige Einsatzzwecke könnte eine weitere Optimierung des Systems jedoch durchaus erhebliche Vorteile bieten.
 
