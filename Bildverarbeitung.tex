@@ -69,9 +69,11 @@ Zum isolierten Testen der Bildverarbeitung im FrameProcessor wurde eine Testklas
 \\
 Um Testdateien in den SD-Kartenspeicher des AndroidStudio-Emulators (siehe Kapitel \ref{Android}) zu schreiben, bzw. sie aus diesem auszulesen, wurden folgende Befehle über die AndroidStudio-Konsole eingegeben:
 \\
+\\
 Schreiben: \textit{adb push path/yourfile.xxx /sdcard/yourfile.xxx}
 \\
 Lesen: \textit{adb pull /sdcard/yourfile.xxx /path/yourfile.xxx}
+\\
 \\
 Damit die FrameProcessor-Schnittstelle überhaupt angesprochen werden kann, musste für die Testklasse die Methode loadRGBFile() (Abbildung \ref{fig:BIN_to_Bitmap}) implementiert werden, die aus einer BIN-Datei, die ein Frame im RGB565-Format enthält, ausliest und in ein Bitmap-Objekt schreibt. 
 
