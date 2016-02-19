@@ -1,1 +1,26 @@
 \chapter{Fazit und Ausblick}
+In diesem Kapitel betrachten wir zunächst die Erfüllung der Anforderungen, die in der Anforderungsanalyse (Kapitel \textbf{X}) aufgestellt wurden. Anschließend werden eingetretene Risiken (siehe Kapitel \textbf{X}) und Probleme diskutiert, bevor abschließend ein Ausblick auf mögliche Verbesserungen und Erweiterungen dieser Arbeit gegeben wird.
+\section{Erfüllung der Anforderungen}
+Entsprechend Kapitel X wird auch hier eine Aufteilung nach Funktionalen und Nichtfunktionalen Anforderungen vorgenommen.
+\subsection{Erfüllung Funktionale Anforderungen}
+Betrachtet man die Anforderungen aus Kapitel \textbf{X} bezüglich des Sonoscape Ultraschallgeräts konnten diese mit dem fertigen Prototypen ausnahmslos erfüllt werden. Die vorgegebene Framerate konnte bei der Evaluation überprüft und erreicht werden. Hier ist allerdings zu erwähnen, dass es wünschenswert gewesen wäre, den Netzwerkzugriff via WLAN-Stick zu realisieren ohne über LAN-Kabel einen Router direkt an das Sonoscape-Gerät anhängen zu müssen. Die funktionalen Anforderungen an die mobile Applikation inklusive Bildverarbeitung und grafischer Benutzeroberfläche konnten ebenfalls erfüllt werden, wobei, wie bereits in Kapitel \textbf{X} erwähnt, eine Konvertierung des Farbformats nicht mehr stattfinden musste. Die grafische Benutzeroberfläche erfüllt sowohl die in Kapitel \textbf{X} beschriebenen Anforderungen, als auch die in Kapitel \textbf{X} erläuterten Guidelines von Android-Apps.
+\subsection{Erfüllung Nichtfunktionale Anforderungen}
+Mit dem in Kapitel \textbf{X} genauer beschriebenen Smartphone G4 von LG konnten die in Kapitel \textbf{X} aufgelisteten Anforderungen an Display, Prozessorleistung und Betriebssystem erfüllt werden. Die Anforderungen an die Halterung konnten nach Installation einer zusätzlichen Lichtquelle auf der unteren Seite des Spiegels realisiert werden. Durch minimalistischen Materialeinsatz konnte das Gewicht der Halterung gering gehalten werden, sodass auch diese Anforderung erfüllt ist. Zu der Darstellung der Ultraschallbilder ist zu sagen, dass die Anforderungen bezüglich der eigentlichen Schallbilder umgesetzt werden konnten. Die Darstellung der ausgewählten weiteren Informationen ist bislang nicht ideal, da hierfür der Platz auf dem Frame nicht ausreicht sämtliche möglichen Überdeckungen zu vermeiden.
+\section{Risiken und Probleme}
+Die in Kapitel \textbf{X} aufgeführten Risiken und getroffenen Maßnahmen konnten weitestgehend im Rahmen des Projektplans bewältigt und umgesetzt werden. Wie bereits oben erwähnt konnte leider kein WLAN-Stick beim Sonoscape Ultraschallgerät installiert werden, was allerdings nicht die Funktionalität des Projekts beeinträchtigt hat.
+\\
+\\
+Zeitraubend war die Umsetzung des in Kapitel \textbf{X} beschriebenen Ansatzes zur Bildakquise via FFmpeg-Bibliothek und MediaCodec Api inklusive Konvertierung auf dem Smartphone (siehe Kapitel \textbf{X}). Dieser Ansatz und seine Umsetzung wurden wie in Kapitel \textbf{X} beschrieben aufgrund zu hoher Latenz, was dazu führt, dass so keine Echtzeitanwendung möglich war, obsolet. Leider wurde dies erst nach vollständiger Umsetzung dieses Ansatzes klar. 
+\\
+\\
+Eine weitere Problematik bestand beim Bau der Halterung, welche vorerst planmäßig komplett aus FIMO-Modelliermasse (siehe Kapitel \textbf{X}) hergestellt werden sollte. Hier mussten bis zum Tag der Evaluierung immer wieder Plan und Materialien geändert werden, um eine Halterung zu schaffen, die die Anforderungen erfüllt.
+
+\section{Ausblick}
+Eine sinnvolle Erweiterung der mobilen Anwendung bezüglich der Bildverarbeitung wäre die Aufhebung eines festgelegten Zoom-Faktors des Ultraschallbildes(siehe Kapitel \textbf{X}). Es müsste hierfür eine Erkennung des eingestellten Zoom-Faktors zur Laufzeit implementiert werden mit anschließender automatischer Skalierung des Bildes. Dadurch wäre der Mediziner, der die Anwendung nutzt, noch freier in der Handhabe des Sonic Phones und könnte ein größeres Spektrum der Funktionen des Ultraschallgeräts weiterhin nutzen.
+\\
+\\
+Bezüglich der Halterung des Smartphones wäre eine sinnvolle Änderung eine Halterung herzustellen, die die Anforderungen aus Kapitel \textbf{X} weiterhin erfüllt, zudem aber flexibel anpassbar an verschiedene Smartphones ist. Dies hätte zur Folge, dass der Anwender bei der Wahl des Smartphones freier ist, auch kann auf neue Smartphone-Modelle mit verbesserter Leistung besser reagiert werden.
+\\
+\\
+Der letzte Punkt der als Erweiterung hier aufgeführt wird, ist die Berechnung und Darstellung eines 3D-Modells des Ultraschallbildes anstelle der 2D Frames. Diese Idee war ursprünglich bereits Teil dieses Projektes, musste allerdings leider aus dem Plan genommen werden, da dies mit gegebener Anzahl Seminarteilnehmer zeitlich nicht machbar gewesen wäre.
+
