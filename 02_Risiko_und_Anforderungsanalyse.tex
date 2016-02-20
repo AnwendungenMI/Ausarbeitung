@@ -1,137 +1,100 @@
-\chapter{Risiko- und Anforderungsanalyse}
-Dieser Bereich umfasst die durchgeführte Risikoanalyse für dieses Projekt. Die Risikoanalyse beinhaltet die Risikoidentifikation, die Risikokategorisierung und die Risikobehandlung. Im Anschluss an die Risikoanalyse wird die Anforderungsanalyse beschrieben, in der die funktionalen und nichtfunktionalen Anforderungen definiert werden. 
-\section{Risikoanalyse}
-Um während der Entwicklung und Umsetzung des Projekts nicht von projekt- \linebreak 
-gefährdenden Risiken überrascht zu werden, wurde vor der Entwicklung eine Risikoanalyse durchgeführt und entsprechende Maßnahmen geplant.Die durchgeführte Risikoanalyse umfasst drei Bereiche; die Risikoidentifizierung, die Risikokategorisierung und die Risikobehandlung. Die Risikoidentifikation dient der Erfassung möglicher auftretender Risiken. Diese werden in der Risikokategorisierung analysiert und Risikoklassen zugeordnet, um die Auswirkung auf die Umsetzung festzustellen. In der Risikobehandlung werden anschließend für jedes Risiko entsprechende (Gegen-) Maßnahmen oder alternative Lösungsansätze geplant, die während der Umsetzung angewendet werden.\\
-Für die Risikoanalyse wurden die einzelnen Komponenten des Projekts separat analysiert und die auftretenden Risiken identifiziert. Die benötigte/ verwendete Hardware dieses Projekts besteht aus den folgenden Komponenten:
+\chapter{Risiko und Anforderungsanalyse}
+Dieser Bereich umfasst die Beschreibung der Risiken und eine entsprechende Risikoplanung, in deren Anschluss die die Funktionalen und Nichtfunktionalen Anforderungen definiert werden.\\
+Um während der Entwicklung und Umsetzung des Projekts nicht von projektgefährdenden Risiken überrascht zu werden, wurde vor der Entwicklung eine Risikoanalyse durchgeführt und entsprechende Maßnahmen geplant. Hierfür wurden die einzelnen Komponenten des Projekts separat analysiert und die auftretenden Risiken identifiziert. Die benötigte/ verwendete Hardware dieses Projekts lässt sich in die folgenden drei Komponenten unterteilen:
+\\
+\begin{minipage}{\textwidth}
 \begin{itemize}
 \item Das Ultraschallgerät/ Sonoscape, auf dem die Ultraschallbilder generiert werden.
 \item Das mobile Endgerät, für das eine Anwendung zur Anzeige der Ultraschallbilder implementiert wird.
-\item Die Halterung für die Befestigung des mobilen Endgerätes und des Teilerspiegels an dem Ultraschallkopf.
+\item Die Halterung für die Befestigung des mobilen Endgeräts und dem halbdurchlässigen Spiegel an dem Ultraschallkopf.
 \end{itemize}
+\end{minipage}
 
-\subsection{Risikoidentifizierung}
-Die nachfolgende Tabelle \ref{tab:Risikoidentifizierung} umfasst die Voraussetzung/ Umsetzung, bei der entsprechende Risiken auftreten können. Insgesamt wurden 11 Risiken ermittelt, die eine Realisierung des Projekts gefährden. Diese werden in der nachfolgenden Tabelle vorgestellt. Die Tabelle umfasst eine zugeordnete Risikoidentifikation (RisikoID), eine Beschreibung der Voraussetzung/ Umsetzung sowie das zugehörige Risiko. 
+\section{Risikoanalyse}
+Die nachfolgenden Tabellen \ref{tab:Risikoanalyse} und \ref{tab:Risikomassnahmen} umfassen die identifizierten Risiken und die geplanten Maßnahmen, die bei der Entwicklung und Umsetzung des Projekts auftreten können. Insgesamt wurden 11 Risiken ermittelt, die eine Realisierung des Projekts gefährden. Diese werden in der nachfolgenden Tabelle vorgestellt. Die Tabelle \ref{tab:Risikoanalyse} umfasst eine zugeordnete RisikoID, eine Beschreibung des Risikos sowie den dadurch auftretenden Effekt.
 
 \begin{center}
 \begin{table} [H]
     \begin{tabular}{ | p{0.1\textwidth} | p{0.45\textwidth} | p{0.45\textwidth} |}
     \hline
-   \textbf{RisikoID} &  \textbf{Voraussetzung/ Umsetzung} & \textbf{Risiko}\\
+   \textbf{RisikoID} &  \textbf{Risiko} & \textbf{Effekt}\\
       \hline
-      	1	
-      & Zugriff auf das Betriebssystem wird für die Extraktion der Bilddaten und die Installation von zusätzlicher Software und Treibern benötigt. 	
-      & Kann Zugriff auf das Betriebssystem erlangt werden? \\
+      1 &	
+      Zugriff auf das Betriebssystem vorhanden/ erlangen &	
+      Zugriff auf das Betriebssystem wird für die Extraktion der Bilddaten und die Installation von zusätzlicher Software und Treibern benötigt \\
       \hline
-	  2	
-	& Berechtigungen werden für die Installation von Software und Treibern auf dem Ultraschall benötigt.	
-	& Sind ausreichend Berechtigungen auf dem Ultraschallgerät vorhanden? \\
-	\hline
-	3
-	& Die benötigten Ultraschallbilder müssen extrahiert/ aufgenommen werden können.	
-	& Kann auf die Bilddaten des Ultraschallgerätes zugegriffen werden? \\
-	\hline
-	4	
-	& Die Netzwerkschnittstelle wird für die Übertragung der Bilddaten benötigt.	
-	& Verfügt das Ultraschallgerät über eine Netzwerkschnittstelle? \\
-	\hline
-	5	
-	& Die Netzwerkschnittstelle wird für die Übertragung der Bilddaten benötigt.	
-	& Kann das Ultraschallgerät um eine Netzwerkkomponente erweitert werden? \\
-	\hline
-	6	
-	& Die Übertragung der Ultraschallbilder im Ursprungsformat kann sich auf die Framerate (Anzahl der zu übertragenden Bilder) und die Performance auswirken.	
-	& Können die Ultraschallbilder im Ursprungsformat in einem gewissen Zeitintervall übertragen werden? \\
-	\hline
-	7	
-	& Es wird ausreichend Rechenleistung für die Komprimierung und Dekodierung der Bilddaten benötigt, um eine geringe Latenz bzw. die Echtzeitfähigkeit zu gewährleisten.	
-	& Ist ausreichend Rechenleistung für die Realisierung in Echtzeit vorhanden? \\
-	\hline
-	8	
-	& Es wird ausreichend Rechenleistung für die Dekodierung und die Bildverarbeitung benötigt.	
-	& Ist ausreichend Rechenleistung für die Dekodierung der Bilddaten und die Bildverarbeitung vorhanden?\\
-	\hline
-	9	
-	& Das mobile Endgerät muss für die Darstellung der Ultraschallbilder über eine ausreichende Auflösung, Helligkeit und eine geeignete Displaygröße verfügen.	
-	& Ist eine realitätsgetreue Darstellung der Ultraschallbilder auf dem mobilen Endgerät möglich? \\
-	\hline
-	10	
-	& Aufgrund der exakten Vorgabe der Ausrichtung der einzelnen Komponenten (Abstand, Winkel) muss eine Vorrichtung gebaut werden, auf der sich das mobile Endgerät und der Teilerspiegel befestigen lassen.	
-	& Kann eine leichtgewichtige, starre und stabile Vorrichtung entworfen und umgesetzt werden? \\
-	\hline
-	11	
-	& Die Vorrichtung muss  an einer festgelegten Stelle fixiert und befestigt werden, um eine exakte Überlagerung der Bilddaten mit der Realität zu realisieren.	
-	& Kann die Vorrichtung an dem Ultraschallkopf angebracht werden? \\
+      2	&
+      Ausreichende Berechtigungen auf dem Ultraschallgerät vorhanden &
+      Berechtigungen werden für die Installation von Software und Treibern auf dem Ultraschall benötigt\\
+      \hline    
+      3&	Zugriff auf Bilddaten des Ultraschallgeräts vorhanden	&Benötigten Ultraschallbilder müssen extrahiert/ aufgenommen werden können\\
+      	\hline
+4& 	Verfügt das Ultraschallgerät über eine Netzwerk-Schnittstelle &	Die Netzwerkschnittstelle wird für die Übertragung der Bilddaten benötigt\\
+      	\hline
+5&	Erweiterung des Ultraschallgeräts um eine Netzwerkkomponente	&Die Netzwerkschnittstelle wird für die Übertragung der Bilddaten verwendet\\
+      	\hline
+6	&Können die Ultraschallbilder im Ursprungsformat in einem gewissen Zeitintervall übertragen werden	&Die Übertragung der Ultraschallbilder in ihrem Ursprungsformat kann sich auf die Framerate (Anzahl der zu übertragenden Bilder) und die Performance auswirken\\
+      	\hline
+7	&Ausreichend Rechenleistung für die Echtzeitfähigkeit	&Es wird ausreichend Rechenleistung für die Komprimierung und Dekodierung der Bilddaten benötigt, um eine geringe Latenz bzw. die Echtzeitfähigkeit zu gewährleisten.\\
+      	\hline
+8	&Ausreichend Rechenleistung für die Dekodierung der Bilddaten und die Bildverarbeitung vorhanden	&Es wird ausreichend Rechenleistung für die Dekodierung und die Bildverarbeitung benötigt\\
+      	\hline
+9	&Ist eine Realitätsgetreue Darstellung der Ultraschallbilder auf dem mobilen Endgerät möglich	&Das mobile Endgerät muss über eine ausreichende Auflösung, Helligkeit und eine geeignete Displaygröße verfügen\\
+      	\hline
+10	&Kann eine leichtgewichtige, starre und stabile Vorrichtung entworfen und umgesetzt werden	&Aufgrund der exakten Vorgabe der Ausrichtung der einzelnen Komponenten (Abstand, Winkel, Höhe) muss eine Vorrichtung gebaut werden, auf der sich das mobiles Endgerät und der halbdurchlässige Spiegel befestigen lassen\\
+      	\hline
+11	&Kann die Vorrichtung an dem Ultraschallkopf angebracht werden	&Die Vorrichtung muss  an einer festgelegten Stelle fixiert und befestigt werden um eine Realitätsgetreue Überlagerung der Bilddaten mit der Realität zu ermöglichen \\
 \hline
   
     \end{tabular}
-     \label{tab:Risikoidentifizierung}
-     \caption{{\small Tabelle Risikoidentifizierung}}
+     \label{tab:Risikoanalyse}
+     \caption{{\small Tabelle Risikoanalyse}}
     \end{table}
 \end{center}
+Von den ermittelten 11 Risiken haben sieben Risiken so eine gravierende (Tragweite 5) Auswirkung auf die Umsetzung und Realisierung des Projekts, dass diese Risiken eine hohe Priorität hatten und dadurch bereits zu Beginn des Projekts intensiv analysiert wurden, um entsprechende Maßnahmen zu planen. Hierbei ging es vor allem um den Zugriff auf das Ultraschallgerät, die Installation von benötigten Treibern und Software, das Auslesen des Bildspeichers, der Netzwerkzugriff des Ultraschallgeräts und die Konstruktion einer stabilen Halterung, die an dem Ultraschallkopf befestigt werden kann. Die Entsprechenden Maßnahmen reichten hierbei von der Konsultation und Kommunikation mit dem Geräthersteller über die Analyse der beteiligten Komponenten bis hin zur Umsetzung von Prototypen während der Planung und der Realisierung des Projekts.  \\
 
-\subsection{Risikokategorisierung}
-In der Risikokategorisierung werden die identifizierten Risiken in bestimmte Risikoklassen eingeteilt und die Auswirkung auf die Umsetzung des Projekts festgestellt. Dies geschieht anhand der anzunehmenden Eintrittswahrscheinlichkeit und der dadurch entstehende Schaden durch die jeweiligen Risiken. Die Risikokategorisierung in der nachfolgenden Abbildung \ref{fig:risikokategorisierung} basiert auf der vorgestellten Methode von Marx \footcite{Risikomanagement}. Der Schaden bezieht sich in diesem Projekt auf die Einhaltung von Meilensteinen, die Realisierung des Projekts sowie die Qualität und Performance der gesamten Umsetzung. Die Kategorien unterteilen sich dabei in drei unterschiedliche Klassen, die in der nachfolgenden Abbildung wie folgt dargestellt werden:
+In der nachfolgenden Tabelle \ref{tab:Risikomassnahmen} sind die zugehörigen Arbeitspakete angegeben in dem die geplante Maßnahme durchgeführt wurde. Jede Maßnahme wird beschrieben, die Eintrittswahrscheinlichkeit angegeben und die Auswirkung durch die Tragweite des Risikos bei einem Eintritt festgelegt. 
+Die „Tragweite“ repräsentiert die Auswertung des Risikos, hierbei handelt es sich ebenso um die Priorität der einzelnen Risiken wie auch um die Auswirkung auf die Durchführbarkeit bzw. die Gefährdung der Projektumsetzung (bspw. die Einhaltung der festgelegten Meilensteine, Auswirkung auf die Qualität bzw. die Performance). Je höher der Wert ist umso höher ist die Priorität der Umsetzung der Maßnahme für die Realisierung. Die Skala für die Tragweite ist durch die folgenden fünf Werte und deren Auswirkung definiert:\\
+\begin{minipage}{\textwidth}
 \begin{itemize}
-\item ROT  = projektgefährdend
-\item GELB = kritisch
-\item GRÜN = unkritisch
+\item 1 = zu vernachlässigen
+\item 2 = unkritisch
+\item 3 = in Bereichen kritisch
+\item 4 = Kritisch
+\item 5 = projektgefährdend
 \end{itemize}
-Von den ermittelten 11 Risiken haben sieben Risiken eine projektgefährdende Auswirkung. Diese Risiken wurden daher mit einer hohen Priorität versehen und frühzeitig während der Projektrealisierung behandelt. Hierfür wurden entsprechende Maßnahmen bzw. alternative Lösungen entworfen, die eine Projektumsetzung ermöglichen oder die Auswirkungen eines Risikos minimieren. 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{Bilder/Risiko_und_Anforderungsanalyse/Risikokategorisierung.png}
-	\caption{Risikokategorisierung}
-	\label{fig:risikokategorisierung}
-\end{figure}
+\end{minipage}
 
-\subsection{Risikobehandlung}
-Für jedes identifizierte Risiko wurden entsprechende Maßnahmen geplant, die im Laufe der Projektrealisierung umgesetzt wurden. Hierbei ging es vor allem um die Beschaffung des Zugriffs auf das Ultraschallgerät, die Installation von benötigten Treibern und zusätzlicher Software, die Extraktion der Ultraschallbilder, der Netzwerkzugriff des Ultraschallgeräts und die Konstruktion einer stabilen Halterung, die an dem Ultraschallkopf befestigt werden kann. Die entsprechenden Maßnahmen reichten hierbei von der Konsultation und Kommunikation mit dem Gerätehersteller über die Analyse der beteiligten Komponenten bis hin zur Umsetzung von Prototypen während der Planung und der Realisierung des Projektes. \\ 
-Der entwickelte Projektplan für dieses Projekt umfasst fünf Hauptbereiche, in denen die verschiedenen Arbeitsschritte für das Projektteam festgelegt  und während der Projektdurchführung umgesetzt wurden. Die fünf Hauptbereiche bestehen aus: 
-\begin{enumerate}
-\item der Recherche und der Vorbereitung,
-\item dem Eignungstest des vorhandenen Ultraschallgerätes,
-\item dem Entwurf und der Umsetzung der Halterung,
-\item die Implementierung 
-	\begin{enumerate}
-         \item der Serversoftware,
-         \item der Clientsoftware
-	\end{enumerate}
-\item und der Evaluierung
-\end{enumerate}
-
-Diese Hauptbereiche umfassen insgesamt 44 weitere Arbeitspakete, in denen die Umsetzung strukturiert und geplant wurde. Aus Übersichtlichkeitsgründen wurde auf die Anzeige des kompletten Projektplans verzichtet, dieser ist aber im Anhang zu finden. In der nachfolgenden Tabelle \ref{tab:Risikomassnahmen} sind die zugehörigen Arbeitspakete sowie die geplanten Maßnahmen angegeben, die durchgeführt wurden.
 
 \begin{center}
-\begin{minipage}{1\textwidth}
+\begin{minipage}{0.9\textwidth}
 \begin{table} [H]
-    \begin{tabular}{ | p{0.1\textwidth} | p{0.6\textwidth} | p{0.3\textwidth} | } 
+    \begin{tabular}{ | p{0.1\textwidth} | p{0.35\textwidth} | p{0.1\textwidth} | p{0.25\textwidth} | p{0.15\textwidth} | } 
     \hline
-   \textbf{RisikoID} &  \textbf{Maßnahme(n)} & \textbf{Arbeitspaket} \\
+   \textbf{RisikoID} &  \textbf{Maßnahme(n)} & \textbf{Arbeits-paket} & \textbf{Eintritts-wahrscheinlichkeit} & \textbf{Tragweite} \\
       \hline
-1	&Konsultation und Kommunikation mit dem Gerätehersteller	& Systemzugriff (4) \\
+1	&Konsultation und Kommunikation mit dem Gerätehersteller	&4	&80\%	&5 \\
 \hline
-2	&Analyse vorhandener bzw. Erweiterung der Berechtigungen des Ultraschallgeräts	& Berechtigungen prüfen (5)	\\
+2	&Analyse vorhandener bzw. Erweiterung der Berechtigungen des Ultraschallgeräts	&5	&100\%	&5\\
 \hline
-3	&Analyse der Zugriffsmöglichkeiten auf den internen Bildspeicher oder Installation und Ausführung zusätzlicher Software	& Zugriffsmöglichkeiten Bildspeicher prüfen (6)	\\
+3	&Analyse der Zugriffsmöglichkeiten auf den internen Bildspeicher oder Installation und Ausführung zusätzlicher Software	&6	&80\%	&5\\
 \hline
-4	&Vorhandene Schnittstellen des Ultraschallgeräts analysieren. 	& Netzwerkzugriff prüfen (7)	\\
+4	&Vorhandene Schnittstellen des Ultraschallgeräts analysieren. 	&7	&100\%	&5 \\
 \hline
-5	&Die Möglichkeiten für die  Installation einer zusätzlichen Netzwerkschnittstelle überprüfen (zusätzliche Hardware: Router, WLAN- Stick)	& Netzwerkzugriff prüfen (7)	\\
+5	&Die Möglichkeiten für die  Installation einer zusätzlichen Netzwerkschnittstelle überprüfen (zusätzliche Hardware: Router, WLAN- Stick)	&7	&100\%	&5 \\
 \hline
-6	&Um den zu übertragenden  Datenumfang zu reduzieren, muss ggf. eine Komprimierung der Daten erfolgen.	& Serversoftware implementieren (16)
-	\\
+6	&Um den zu übertragenden  Datenumfang zu reduzieren, muss ggf. eine Komprimierung der Daten erfolgen.	&16	&60\%	&3 \\
 \hline
-7	&Analyse der benötigten Rechenleistung 	& Serversoftware (21)/ Clientsoftware (28) implementieren	\\
+7	&Analyse der benötigten Rechenleistung 	&22	&60\%	&2 \\
 \hline
-8	&Analyse der benötigten Rechenleistung und Beschaffung eines mobilen Endgerätes mit genügend Rechenleistung	& geeignetes Smartphone auswählen (2)	\\
+8	&Analyse der benötigten Rechenleistung und Beschaffung eines mobilen Endgerätes mit genügend Rechenleistung	&2	&20\%	&2 \\
 \hline
-9	&Festlegen der benötigten Auflösung und der Displaygröße	& geeignetes Smartphone auswählen (2)	\\
+9	&Festlegen der benötigten Auflösung und der Displaygröße	&2	&20\%	&1 \\
 \hline
 10	&Planung der Vorrichtung,
-Analyse der benötigten Materialen, Prototyping	& Halterung/ Hardware konstruieren (11)	\\
+Analyse der benötigten Materialen, Prototyping	&11	&100\%	&5 \\
 \hline
-11	&Prototyping	& Halterung/ Hardware konstruieren (11)	\\
+11	&Prototyping	&11	&100\%	&5     \\
 \hline
      \end{tabular}
      \label{tab:Risikomassnahmen}
@@ -141,15 +104,15 @@ Analyse der benötigten Materialen, Prototyping	& Halterung/ Hardware konstruier
 \end{center}
 
 \section{Anforderungsanalyse}
-Die Anforderungsanalyse umfasst die Definition der funktionalen und der nichtfunktionalen Anforderungen für das Projekt. Im folgenden Abschnitt 2.2.1 werden die funktionalen Anforderungen für die einzelnen Bereiche „Sonoscape/ Ultraschallgerät“, „Datenübertragung“, „mobile Applikation“, „Bildverarbeitung“ und die „grafische Benutzeroberfläche“ festgelegt. Die nichtfunktionalen Anforderungen in Abschnitt 2.2.2 umfassen die Bereiche "mobiles Endgerät", "Halterung" und "Darstellung der Ultraschallbilder". In diesen Abschnitten werden die  Funktionalitäten definiert, welche die gesamte Anwendung erfüllen „muss“ (Absolute Gültigkeit), „soll“ (Empfehlung) oder „kann“ (Optional).   
+Im Folgenden werden die Funktionalen Anforderungen für die einzelnen Bereiche „Sonoscape/ Ultraschallgerät“, „Datenübertragung“, „mobile Applikation“, „Bildverarbeitung“ und die „grafische Benutzeroberfläche“ festgelegt. Hierbei werden die Definition der Funktionalitäten vorgenommen, welche die gesamte Anwendung erfüllen muss (Absolute Gültigkeit), soll (Empfehlung) oder kann (Optional).  
 \subsection{Funktionale Anforderungen}
 \begin{minipage}{\textwidth}
 Sonoscape/ Ultraschallgerät
 \begin{itemize}
-\item Das erstellte Ultraschallbild muss in derselben Auflösung extrahiert werden können, in der es vom Ultraschallgerät generiert wurde.
+\item Das erstellte Ultraschallbild muss in der Auflösung extrahiert werden können, in der es vom Ultraschallgerät generiert wurde.
 \item Das Ultraschallgerät muss um eine Netzwerkkomponente für den Netzwerkzugriff ergänzt werden.
-\item Das Sonoscape muss um eine Serverfunktionalität ergänzt werden, über die die Ultraschallbilder übertragen werden.
-\item Die extrahierten Bilder/ Frames des Ultraschallgerätes müssen vor der Übertragung in ein entsprechendes Format konvertiert werden.
+\item Das Sonoscape muss um eine Serverfunktionalität ergänzt werden über die, die Ultraschallbilder übertragen werden.
+\item Die extrahierten Bilder/ Frames des Ultraschallgeräts müssen vor der Übertragung in ein entsprechendes Format konvertiert werden.
 \end{itemize}
 \end{minipage}
 
@@ -159,7 +122,7 @@ Datenübertragung
 \item Um die zu übertragenden Daten zu verringern, muss eine Datenkomprimierung durchgeführt werden. 
 \item Die Datenübertragung muss durch einen IO-Service realisiert werden.
 \item Die Ultraschallbilder müssen kontinuierlich separat übertragen werden.
-\item Die Ultraschallbilder müssen mit einer konstanten Framerate zw. 12-30 Frames per second (fps) übertragen und angezeigt werden. Die Variabilität der Framerate ist abhängig von der Anzahl der erzeugten Ultraschallbilder durch das Ultraschallgerät. 12 Frames werden von dem Gerät erzeugt, wenn zusätzliche Informationen in den Bildern angezeigt werden (bspw. Doppler Effekt), 30 Frames hingegen werden bei der normalen Verwendung ohne zusätzliche Informationen erzeugt.
+\item Die Ultraschallbilder müssen mit einer konstanten Framerate zw. 12-30 Frames per second (fps) übertragen und angezeigt werden. Die Variabilität der Framerate ist abhängig von der Anzahl der erzeugten Ultraschalbilder durch das Ultraschallgerät. 12 Frames werden von dem Gerät erzeugt, wenn zusätzliche Informationen in den Bilder angezeigt werden (bspw. Doppler Effekt), 30 Frames hingegen werden bei der normalen Verwendung ohne zusätzliche Informationen erzeugt.
 \item Das Protokoll für die Datenübertragung muss TCP/IP sein.
 \end{itemize}
 \end{minipage}
@@ -179,7 +142,7 @@ Mobile Applikation
 Bildverarbeitung
 \begin{itemize}
 \item Die Bildverarbeitung muss innerhalb der mobilen Anwendung realisiert werden.
-\item Die Bildverarbeitung muss die relevanten Informationen des Ultraschallbildes durch das Ausschneiden und die Zusammensetzung eines neuen Frames bereitstellen.
+\item Die Bildverarbeitung umfasst das Ausschneiden der relevanten Informationen des Ultraschallbildes und die Zusammensetzung ein neuen Frames.
 \end{itemize}
 \end{minipage}
 
@@ -190,14 +153,14 @@ Die grafische Benutzeroberfläche
 \item Auf der grafischen Benutzeroberfläche müssen die Ultraschallbilder kontinuierlich angezeigt werden.
 \end{itemize}
 \end{minipage}
-\subsection{Nichtfunktionale Anforderungen}
+\subsection{Nichtfunktionale Anforderungen} \label{NichtFunkAnf}
 \begin{minipage}{\textwidth}
 Mobiles Endgerät
 \begin{itemize}
 \item Die Lichtdichte (Helligkeit) des Displays muss min. 500 cd/m² betragen.
 \item Die Auflösung muss min. 1920x 1080 (Full HD) betragen.
 \item Die Größe des Displays muss min. 5.0 Zoll betragen.
-\item Das Gewicht soll höchstens 400 Gramm betragen.
+\item Das Gewicht darf höchstens 200 Gramm betragen.
 \item Das Gerät muss über eine Netzwerkschnittstelle (WLAN (802.11)) verfügen.
 \item Das Gerät muss über einen Beschleunigungssensor und ein Gyroskop verfügen.
 \item Das Gerät muss über ausreichend Rechenleistung für die Bilddecodierung, Bildverarbeitung, Bildanzeige und min. 4 Kerne (Quad-Core) verfügen.
@@ -208,8 +171,8 @@ Mobiles Endgerät
 \begin{minipage}{\textwidth}
 Halterung
 \begin{itemize}
-\item Es müssen nahezu identische Lichtverhältnisse auf beiden Seiten des Teilerspiegels existieren. Evtl. kann dazu eine zusätzliche Lichtquelle installiert werden.
-\item Das Gewicht der kompletten Halterung (mobiles Endgerät, Teilerspiegel, Material zur Befestigung)  soll 400 Gramm nicht überschreiten.
+\item Es müssen nahezu identische Lichtverhältnisse auf beiden Seiten des halbdurchlässigen Spiegels existieren. Evtl. kann dazu eine zusätzliche Lichtquelle installiert werden.
+\item Das Gewicht der kompletten Halterung (mobiles Endgerät, halbdurchlässiger Spiegel, Material zur Befestigung)  soll 400 Gramm nicht überschreiten.
 \item Um den festgelegten Winkel zw. mobilem Endgerät, Auge des Betrachters und dem Objekt nicht zu verändern muss ein starres Material verwendet werden.
 \end{itemize}
 \end{minipage}
@@ -217,7 +180,7 @@ Halterung
 \begin{minipage}{\textwidth}
 Darstellung der Ultraschallbilder
 \begin{itemize}
-\item Da nicht alle dargestellten Informationen des Ultraschallgerätes auf dem Ursprungsbild benötigt werden, müssen die benötigten Informationen aus dem Ursprungsbild ausgeschnitten und zu einem neuen Bild zusammengefügt werden.
+\item Da nicht alle dargestellten Informationen des Ultraschallgerätes auf dem Ursprungsbildes benötigt werden, müssen die benötigten Informationen aus dem Ursprungsbild ausgeschnitten und zu einem neuen Bild zusammengefügt werden.
 \item Um die komplette Darstellung des Ultraschallbildes zu erfassen muss die Zoomstufe eins auf dem Ultraschallgerät ausgewählt sein.
 \end{itemize}
 \end{minipage}
