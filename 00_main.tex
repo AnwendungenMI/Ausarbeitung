@@ -22,6 +22,7 @@
 \usepackage{kpfonts}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{appendix}
 
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
@@ -123,11 +124,14 @@
 \pagenumbering{arabic}
 
 \clearpage
-\input{Materialien_Grundlagen}
+\input{01_Einleitung}
 \input{02_Risiko_und_Anforderungsanalyse}
+\input{Materialien_Grundlagen}
+\input{04_objektorientierte_Analyse_und_Entwurf}
 \input{Bildakquise}
 \input{05_SonoScape_Analyse}
 \input{Bildverarbeitung}
+\input{06_06_Bildanzeige}
 \input{07_Prototypen_Bau}
 \input{Evaluierung}
 \input{FazitUndAusblick}
@@ -139,5 +143,10 @@
 %\setcounter{page}{\thepageNumberAfterContent}
 \newpage
 \printbibliography
+
+\begin{appendices}	
+  \chapter{Anhang}
+  \section{Projektplan\_Sonic\_Phone.mpp}
+\end{appendices}
 
 \end{document}
