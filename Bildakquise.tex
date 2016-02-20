@@ -11,7 +11,7 @@ Eine der grundlegenden Funktionalitäten des Projektes ist die Anzeige der Bildd
 Im vorliegenden Kapitel wird primär auf die Schritte \textit{Bildakquise}, \textit{Kodierung} sowie \textit{Dekodierung} eingegangen, da die Implementierungen dieser Funktionalitäten direkt voneinander abhängen und somit nicht getrennt betrachtet werden können. Die Datenübertragung und Anzeige der Bilddaten bleiben hingegen unbeeinflusst von den genannten Prozessschritten und werden somit gesondert behandelt.\\
 
 \section{Bildakquise}
-Der Prozesschritt der Bildakquise beinhaltet die Ermittlung der Bilddaten von dem Quellgerät. Dabei können, je nach vorhandener Hard- und Softwarekonfiguration verschiedene Ansätze verfolgt werden.\\
+Der Prozesschritt der Bildakquise beinhaltet die Ermittlung der Bilddaten von dem Quellgerät. Dabei können, je nach vorhandener Hard- und Softwarekonfiguration, verschiedene Ansätze verfolgt werden.\\
 \\
 Ein möglicher Ansatz ist die Verwendung eines Hardwareadapters (\glqq FrameGrabber\grqq), welcher die Videosignale des Quellgerätes über dessen Videoausgang entgegennimmt und über eine Datenschnittstelle einem verarbeitenden Gerät zur Verfügung stellt. Ein Vorteil dieser Vorgehensweise ist die Simplizität in Bezug auf das Quellgerät. Da das Videosignal über bereits vorhandene, standardisierte Schnittstellen übertragen wird, muss keine Veränderung an der Software des Gerätes vorgenommen werden.\\
 Im Gegenzug dazu wird jedoch ein weiteres Gerät, welches die Bilddaten entgegennimmt und verarbeitet, benötigt. Damit steigt die Gesamtkomplexität des Systems erheblich an, da statt einem Quell- und einem Zielgerät nunmehr ein Quellgerät, ein Zwischengerät zur Verarbeitung und ein Zielgerät benötigt werden.\\
@@ -32,7 +32,7 @@ Bei der Kodierung werden die zuvor aufgenommen Bilddaten aufbereitet, um die Üb
 \begin{equation}
 D_r=1024*768*3*30=67.5 MByte/s.
 \end{equation}
-Wenn als Übertragungsmedium WLAN genutzt wird und der 802.11ac\footcite{WIFIStandard} Standard vorausgesetzt werden kann, ist bei einer üblichen Kanalbreite von 20 MHz eine maximale Übertragunsgrate von $96.3 Mbit/s$ oder $12 MByte/s$ möglich. Folglich können die Daten nicht ohne vorherige Kompression übertragen werden.
+Wenn als Übertragungsmedium WLAN genutzt wird und der 802.11ac\footcite{WIFIStandard} Standard vorausgesetzt werden kann, ist bei einer üblichen Kanalbreite von 20 MHz eine maximale Übertragungsrate von $96.3 Mbit/s$ oder $12 MByte/s$ möglich. Folglich können die Daten nicht ohne vorherige Kompression übertragen werden.
 
 \section{Dekodierung}
 Die Dekodierung rekonstruiert aus dem übertragenen Datenstrom die ursprünglichen Frames und gibt sie an zur Weiterverarbeitung und Anzeige frei. Dieser Prozessschritt wird auf dem Smartphone durchgeführt, da er erst nach der Datenübertragung stattfinden kann.
@@ -70,17 +70,17 @@ ffmpeg -s 1024x768 -framerate 15 -f x11grab -i :0.0 -pix_fmt nv12
 Dem Listing \ref{lst:ffmpeg_befehl} ist der endgültige Befehl zur Aufnahme des Live-Videos zu entnehmen. Zusätzlich zu dem zuvor dargestellten Befehl in Abbildung \ref{fig:FFmpeg_befehl1} wurden noch Schalter für das Pixelformat, den Videocodec sowie dessen Konfiguration angegeben. Über den \textit{pipe}-Ausdruck wird der gesamte Datenstrom umgeleitet und kann somit von einer beliebigen Software über den Standardinput ausgelesen und übertragen werden.
 
 \subsection{Nutzung des MediaCodec}
-Zur Dekodierung der Daten kann die Android MediaCodec Api genutzt werden. Diese stellt sicher dass die Verarbeitung der komprimierten Videodaten hardwarebeschleunigt über den dedizierten Schaltkreis des Gerätes stattfindet. \\
+Zur Dekodierung der Daten kann die Android MediaCodec Api genutzt werden. Diese stellt sicher, dass die Verarbeitung der komprimierten Videodaten hardwarebeschleunigt über den dedizierten Schaltkreis des Gerätes stattfindet. \\
 
 \begin{figure}[h]
 	\includegraphics{Bilder/BildakquiseUndDatenaufbereitung/mediacodec.pdf}
-	\caption[Nutzung der Android MediaCdec Api]{Nutzung der Android MediaCodec Api\footnotemark}
+	\caption[Nutzung der Android MediaCodec Api]{Nutzung der Android MediaCodec Api\footnotemark}
 	\label{fig:media_codec}
 \end{figure}
 \footnotetext{\cite{AndroidMediaCodec}}
-Die MediaCodec Api wird genutzt, indem die komprimierten Rohdaten Paketweise über Eingabepuffer an den Codec übertragen werden. Nach der Dekodierung werden die resultierenden Frames über die vom Codec zur Verfügung gestellten Ausgabepuffer ausgelesen und angezeigt.\\
+Die MediaCodec Api wird genutzt, indem die komprimierten Rohdaten paketweise über Eingabepuffer an den Codec übertragen werden. Nach der Dekodierung werden die resultierenden Frames über die vom Codec zur Verfügung gestellten Ausgabepuffer ausgelesen und angezeigt.\\
 Da die Daten als kontinuierlicher Datenstrom an das Smartphone gesendet werden, müssen sie vor der Übergabe an den MediaCodec in einzelne Pakete eingeteilt werden. Dabei ist es wichtig, dass die Pakete die erwartete Struktur und den erwarteten Inhalt aufweisen. Diese Eigenschaften sind von dem verwendeten Codec abhängig.\\
- In der vorliegenden Implementierung wurde als Übertragungsformat für die Rohdaten das Annex-B Format genutzt, bei welchem die Daten in sogenannte NALUs\footnote{Network Access Layer Unit} eingeteilt werden. Für den H.264 Codec entspricht somit ein Paket einer NALU.\\
+In der vorliegenden Implementierung wurde als Übertragungsformat für die Rohdaten das Annex-B Format genutzt, bei welchem die Daten in sogenannte NALUs\footnote{Network Access Layer Unit} eingeteilt werden. Für den H.264 Codec entspricht somit ein Paket einer NALU.\\
 \begin{figure}[H]
 	\includegraphics{Bilder/BildakquiseUndDatenaufbereitung/NALUs.png}
 	\caption{Rohdaten mit Delimitern.}
@@ -89,10 +89,10 @@ Da die Daten als kontinuierlicher Datenstrom an das Smartphone gesendet werden, 
 In dem Datenstrom sind die einzelnen NALUs durch eine festgelegte Bitfolge ("`Delimiter") voneinander getrennt. Im Hexadezimalsystem kann der Delimiter als \textit{00 00 00 01} oder alternativ mit einer Länge von drei Bytes als \textit{00 00 01} dargestellt werden. Beide Varianten sind dem Annex-B Standard zufolge gültige Delimiter.\\
 
 \subsection{Verarbeitung des Datenstroms}
-Zur korrekten Nutzung des MediaCodec muss der Rohdatenstrom also anhand der Delimiter in Echtzeit in einzelne NALUs aufgeteilt werden, welche darauffolgend in die Eingabepuffer des Codec gefüllt werden können. In der Implementierung sind dafür zwei Interfaces vorgesehen.\\
+Zur korrekten Nutzung des MediaCodec muss der Rohdatenstrom anhand der Delimiter in Echtzeit in einzelne NALUs aufgeteilt werden, welche darauffolgend in die Eingabepuffer des Codec gefüllt werden können. In der Implementierung sind dafür zwei Interfaces vorgesehen.\\
 \clearpage
 \textbf{INalUExtractor}\\
-Das INalUExtractor-Interface stellt die Funktion \textit{extractNalUs()} zur Verfügung, welcher ein Byte-Array und die länge der enthaltenen Daten in Bytes übergeben werden kann. Das Ergebnis der Methode ist eine Liste von Byte-Arrays, die jeweils einegültige NALU enthalten und direkt dem MediaCodec-Eingabepuffer übergeben werden können. Sollten in den Übergebenen Daten unvollständige NALUs vorhanden sein (bspw. wenn der gelesene Block des Datenstroms nicht mit einem vollständigen Delimiter endet), werden diese Daten vorgehalten und beim nächsten Aufruf der Methode verarbeitet.\\
+Das INalUExtractor-Interface stellt die Funktion \textit{extractNalUs()} zur Verfügung, welcher ein Byte-Array und die länge der enthaltenen Daten in Bytes übergeben werden kann. Das Ergebnis der Methode ist eine Liste von Byte-Arrays, die jeweils eine gültige NALU enthalten und direkt dem MediaCodec-Eingabepuffer übergeben werden können. Sollten in den übergebenen Daten unvollständige NALUs vorhanden sein (bspw. wenn der gelesene Block des Datenstroms nicht mit einem vollständigen Delimiter endet), werden diese Daten vorgehalten und beim nächsten Aufruf der Methode verarbeitet.\\
 Somit ermöglicht eine gültige Implementierung des Interfaces die kontinuierliche Übergabe von beliebig langen Datenblöcken, welche dann in gültige NALUs aufgeteilt werden.\\
 \begin{lstlisting}[caption=Definition des INaluUExtractor-Interface, label=lst:i_nalu_extractor, language=Java]
 public interface INalUExtractor
@@ -103,7 +103,7 @@ public interface INalUExtractor
 ~\\
 \\
 \textbf{INalUSplitter}\\
-Das INalUSplitter-Interface wird von der Implementierung des INalUExtractor-Interfaces genutzt, um einen Datenblock zu einem \textit{NalUSplitResult} zu verarbeiten. Es definiert die Methode \textit{splitBlock()} welche ein Byte-Array sowie die Länge der enthaltenen Daten erwartet und das Ergebis der Operation als \textit{NalUSplitResult} zurück gibt.
+Das INalUSplitter-Interface wird von der Implementierung des INalUExtractor-Interfaces genutzt, um einen Datenblock zu einem \textit{NalUSplitResult} zu verarbeiten. Es definiert die Methode \textit{splitBlock()} welche ein Byte-Array sowie die Länge der enthaltenen Daten erwartet und das Ergebnis der Operation als \textit{NalUSplitResult} zurück gibt.
 
 \begin{lstlisting}[caption=Definition der NalUSplitResult-Klasse, label=lst:nalu_split_result, language=Java]
 public class NalUSplitResult
@@ -116,7 +116,7 @@ public class NalUSplitResult
 }
 \end{lstlisting}
 
-Ein \textit{NalUSplitResult} repräsentiert einen Datenblock, aufgeteilt in drei Komponenten. Das Feld \textit{partialStartPart} enthält die Bytes einer unvollständigen NALU zu beginn des Datenblockes. Eine solche NALU entsteht, wenn der vorherige Datenblock nicht mit einer vollständigen NALU endet und somit der aktuelle Datenblock nicht mit einem gültigen Delimiter beginnt.\\
+Ein \textit{NalUSplitResult} repräsentiert einen Datenblock, aufgeteilt in drei Komponenten. Das Feld \textit{partialStartPart} enthält die Bytes einer unvollständigen NALU zu Beginn des Datenblockes. Eine solche NALU entsteht, wenn der vorherige Datenblock nicht mit einer vollständigen NALU endet und somit der aktuelle Datenblock nicht mit einem gültigen Delimiter beginnt.\\
 Das Feld \textit{completeNalUs} enthält alle vollständigen, gültigen NALUs, die in dem übergebenen Datenblock vorhanden sind. Das Feld \textit{partialEndPart} enthält die Bytes, welche am Ende eines Datenblockes liegen aber nicht eindeutig eine vollständige NALU repräsentieren.\\
 Die NalUSplitResult-Instanzen, welche für die Datenblöcke generiert werden, werden vom \textit{NalUExtractor} genutzt, um die unvollständigen Datenblöcke zusammenzuführen und einen kontinuierlichen Strom gültiger NALUs zu erzeugen.\\
 \begin{lstlisting}[caption=Definition des INaluUSplitter-Interface, label=lst:i_nalu_splitter, language=Java]
@@ -128,7 +128,7 @@ public interface INalUSplitter
 
 \subsection{Konfiguration des MediaCodec}
 Zusätzlich zu den Datenpaketen, welche von der MediaCodec-Api erwartet werden, müssen noch weitere Konfigurationen zur erfolgreichen Nutzung des Codecs vorgenommen werden. Dazu gehören die Angabe des MIME-type des vorhandenen Videoformates und das Setzen der SPS\footnote{Sequence Parameter Set, enthält Informationen über den Aufbau des Videostreams} und PPS\footnote{Picture Parameter Set, enthält Informationen über die Konfiguration der einzelnen Frames.} Felder des Codecs.\\
- Diese Konfigurationen werden vor dem Start des Decoding-Prozesses vorgenommen. Die Datenübergabe an den Eingabepuffer und das Auslesen der Daten aus dem Ausgabepuffer erfolgt schließlich über Callback-Funktionen, welche für den Codec registriert werden müssen. \\
+Diese Konfigurationen werden vor dem Start des Decoding-Prozesses vorgenommen. Die Datenübergabe an den Eingabepuffer und das Auslesen der Daten aus dem Ausgabepuffer erfolgt schließlich über Callback-Funktionen, welche für den Codec registriert werden müssen. \\
 \\
 Die Bytefolgen für die SPS- und PPS-Felder können ermittelt werden, indem gewisse NALUs eines Streams mit der gewünschten Konfiguration im Annex-B Format manuell analysiert werden. Jede NALU hat einen Typen, welcher über das erste Byte nach dem Delimiter festgelegt wird. Kommt in dem Stream eine NALU mit der Bitfolge \textit{0x67} (in Hexadezimaldarstellung) vor, handelt es sich um das SPS-Feld. Die Bitfolge \textit{0x68} signalisiert das PPS-Feld. 
 
@@ -157,7 +157,8 @@ Die Implementierung mit den vorgestellten Methoden und Ansätzen funktionierte a
 Die Latenz konnte auch durch Die Nutzung anderer alternativer Übertragungsformen und Videocodecs nur unzureichend verringert werden, da alleine das \textit{x11grab}-Device zur Aufnahme des Bildschirminhaltes eine Latenz von 800 mS erzeugte. \\
 
 \section{Implementierung mit X11Lib und LZ4}
-Da die Implementierung mit Hilfe der FFmpeg-Bibliothek eine zu hohe Latenz aufwies, musste eine Alternative gefunden werden. Bei der Konzeption stand, neben den schon zuvor ermittelten Anforderungen an die Performance und das Datenaufkommen, vor allem die Latenz im Mittelpunkt.\\ Es musste also für jeden Prozessschritt eine Implementierung geschaffen werden, welche innerhalb weniger Millisekunden ausgeführt werden kann um in der Summe auf eine Gesamtdauer von weniger als 200 mS zu kommen. 
+Da die Implementierung mit Hilfe der FFmpeg-Bibliothek eine zu hohe Latenz aufwies, musste eine Alternative gefunden werden. Bei der Konzeption stand, neben den schon zuvor ermittelten Anforderungen an die Performance und das Datenaufkommen, vor allem die Latenz im Mittelpunkt.\\
+Es musste also für jeden Prozessschritt eine Implementierung geschaffen werden, welche innerhalb weniger Millisekunden ausgeführt werden kann um in der Summe auf eine Gesamtdauer von weniger als 200 mS zu kommen. 
 
 \subsection{Bildakquise mit X11Lib}
 X11Lib ist eine C++-Bibliothek, welche den direkten Zugriff auf Bilddaten des Linux-Grafiksystems ermöglicht. Zur Aufnahme des aktuell angezeigten Bildschirminhaltes kann die Funktion \textit{XGetImage()} genutzt werden, welche die Bilddaten in einem zuvor festgelegten Format in ein \textit{char-Array} abspeichert.\\
@@ -176,7 +177,7 @@ image = XGetImage(display,root, 0,0 , width,height,AllPlanes, ZPixmap);
 Das Bild wird im ARGB8888-Format abgespeichert, wobei jeder Kanal ein Byte belegt. Ein Pixel besteht also aus vier aufeinanderfolgenden Bytes.
 
 \subsection{Datenreduktion}
-Da für die Aufnahme des Bildschirminhaltes der Alphakanal nicht benötigt wird, muss dieser nicht an das Smartphone übertragen werden. Des Weiteren wird auf dem Smartphone das RGB565-Format genutzt, welches pro Pixel nur zwei Bytes benötigt. Um die übertragenen Datenmenge zu reduzieren, erfolgt die Umwandlung des Pixelformates auf dem Ultraschallgerät, wodurch die unkomprimierten Rohdaten nur noch zwei Bytes pro Pixel in Anspruch nehmen.\\
+Da für die Aufnahme des Bildschirminhaltes der Alphakanal nicht benötigt wird, muss dieser nicht an das Smartphone übertragen werden. Des Weiteren wird auf dem Smartphone das RGB565-Format genutzt, welches pro Pixel nur zwei Bytes benötigt. Um die übertragene Datenmenge zu reduzieren, erfolgt die Umwandlung des Pixelformates auf dem Ultraschallgerät, wodurch die unkomprimierten Rohdaten nur noch zwei Bytes pro Pixel in Anspruch nehmen.\\
 \\
 Da die Umwandlung Pixelweise und damit sehr häufig erfolgt, wurde bei der Implementierung großer Wert auf die Performance der einzelnen Operationen gelegt. Die Konvertierung besteht aus den folgenden Schritten:
 \begin{enumerate}
@@ -210,7 +211,7 @@ for(int row = 0; row < height; row++)
 \end{lstlisting}
 
 \subsection{Kompression}
-Um die zu übertragende Datenmenge weiter zu reduzieren, wurde das LZ4-Verfahren\footcite{LZ4} zur Kompression der Bilddaten verwendet. Bei dem LZ4-Verfahren handelt es sich um eine Verlustfreie Kompression, welche für hohe Kompressions- und Dekompressionsgeschwindigkeiten optimiert ist. Dadurch ist es optimal für den gegebenen Einsatzzweck geeignet, da die Datenrate zwar relevant ist, die Latenz jedoch stark von der Vorverarbeitung eingeschränkt wird. Somit muss ein Kompromiss gefunden werden, welcher die Datenmenge reduziert ohne die Verarbeitungsdauer stark zu beeinflussen. \\
+Um die zu übertragende Datenmenge weiter zu reduzieren, wurde das LZ4-Verfahren\footcite{LZ4} zur Kompression der Bilddaten verwendet. Bei dem LZ4-Verfahren handelt es sich um eine verlustfreie Kompression, welche für hohe Kompressions- und Dekompressionsgeschwindigkeiten optimiert ist. Dadurch ist es optimal für den gegebenen Einsatzzweck geeignet, da die Datenrate zwar relevant ist, die Latenz jedoch stark von der Vorverarbeitung eingeschränkt wird. Somit muss ein Kompromiss gefunden werden, welcher die Datenmenge reduziert ohne die Verarbeitungsdauer stark zu beeinflussen. \\
 Die unkomprimierte Größe eines Frames mit den Abmessungen $1024*768$ beträgt
 \begin{equation}
 N_1=1024*768*2=1572864 Bytes
@@ -223,7 +224,7 @@ und die Redundanz
 \begin{equation}
 R_D=1-1/C_R=0.96
 \end{equation}
-Die Kompression dauerte auf dem Testgerät elf Millisekunden, womit der gesamte Vorgang vor der Übertragung 23 mS in Anspruch nimmt.
+Die Kompression dauerte auf dem Testgerät elf Millisekunden, womit der gesamte Vorgang vor der Übertragung 24 mS in Anspruch nimmt.
 
 \begin{lstlisting}[caption=Kompression der Rohdaten, label=lst:compression, language=C++]
 // Komprimiert die Daten aus dem Quellarray "rgb565Data" in das Zielarray "compressedFile"
@@ -249,13 +250,13 @@ final Bitmap b = getBitmapFromData(decompressedData, width, height);
 
 \subsection{Performance und Funktionalität}
 Die vorgestellte Implementierung hat gegenüber der FFmpeg-Variante zwei Nachteile: Sowohl die entstehende Datenmenge, als auch die Prozessorlast ist wesentlich höher. Beide Nachteile sind jedoch für den gegebenen Anwendungsfall nicht relevant, da die Prozessorlast sich in den Tests nicht auf die Leistung des Ultraschallgerätes auswirkte und die Kapazitätsreserven des verwendeten Übertragungsmediums die erhöhte Datenrate problemlos abfangen konnten.\\
-Im Gegenzug beträgt die Gesamtlatenz des Systems, also die Dauer von der Bildaufnahme auf dem Ultraschallgerät bis zur Bildanzeige auf dem Smartphone, weniger als 200 mS und ist damit um eine Größenordnung geringer als der alternative Ansatz. Die errreichte Framerate liegt zwischen 12 FPS und 30 FPS. Somit werden alle spezifizierten Anforderungen durch die Implementierung zufriedenstellend erfüllt. Zusätzlich ist die vorliegende Lösung, im Gegensatz zum FFmpeg-Basierten Ansatz, komplett verlustfrei und eröffnet damit noch weitere Möglichkeiten zur pixelgenauen Verarbeitung der Ultraschallbilder.
+Im Gegenzug beträgt die Gesamtlatenz des Systems, also die Dauer von der Bildaufnahme auf dem Ultraschallgerät bis zur Bildanzeige auf dem Smartphone, weniger als 200 mS und ist damit um eine Größenordnung geringer als der alternative Ansatz. Die erreichte Framerate liegt zwischen 12 FPS und 30 FPS. Somit werden alle spezifizierten Anforderungen durch die Implementierung zufriedenstellend erfüllt. Zusätzlich ist die vorliegende Lösung, im Gegensatz zum FFmpeg-basierten Ansatz, komplett verlustfrei und eröffnet damit noch weitere Möglichkeiten zur pixelgenauen Verarbeitung der Ultraschallbilder.
 
 \subsection{Optimierungspotenzial}
 Die vorliegende Implementierung kann, gerade in Bezug auf die Kompression, noch weiter Optimiert werden. Der erste Ansatz führt die Kompression für jedes Frame einzeln durch, wobei eine gesamte Dimension, die Zeitdimension, des Videostreams nicht beachtet wird.\\
 Der vorliegende Anwendungsfall hat zwei ungewöhnliche Eigenschaften, die die Zeitdimension für die Kompression relevant werden lassen:
 \begin{enumerate}
-\item{Es werden digitale Bilder abgefilmt. Damit liegt keinerlei Bildrauschen vor.}
+\item{Es werden digital generierte Bilder übertragen. Damit liegt keinerlei Bildrauschen vor.}
 \item{Die übertragenen Frames sind identisch (bei stillstehendem Bild) oder haben zumindest große, identische Bereiche.}
 \end{enumerate}
 
