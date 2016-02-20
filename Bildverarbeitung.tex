@@ -1,9 +1,9 @@
-\chapter{Bildverarbeitung}
+\chapter{Bildverarbeitung} \label{chap:Bildverarbeitung}
 
-Die Bildverarbeitung besteht im Wesentlichen aus der Generierung von einzelnen Videoframes im RGB565 – Bitmap Format, welche optisch den Anforderungen aus \textbf{Kapitel X} entsprechen müssen. Die einzelnen Videoframes werden von der Schnittstelle \textit{IFrameProvider} empfangen und nach der Verarbeitung an die Schnittstelle \textit{FrameViewer} zur Darstellung auf dem Display des Smartphones weitergereicht.
+Die Bildverarbeitung besteht im Wesentlichen aus der Generierung von einzelnen Videoframes im RGB565 – Bitmap Format, welche optisch den Anforderungen aus Kapitel \ref{FunkAnf} entsprechen müssen. Die einzelnen Videoframes werden von der Schnittstelle \textit{IFrameProvider} empfangen und nach der Verarbeitung an die Schnittstelle \textit{FrameViewer} zur Darstellung auf dem Display des Smartphones weitergereicht.
 \\
 \\
-Im ersten Ansatz, der verfolgt wurde, benötigte es eine Konvertierung als Vorverarbeitung der einzelnen Frames in den RGB Farbraum (siehe Kapitel \ref{YUV_RGBKonvert}). Diese Vorverarbeitung wurde im späteren Verlauf überflüssig, da das Übertragungsformat der Videoframes aufgrund der in \textbf{Kapitel X} aufgelisteten Gründen geändert wurde. Der Vollständigkeit halber wird eben genannte Konvertierung hier trotzdem erläutert.
+Im ersten Ansatz, der verfolgt wurde, benötigte es eine Konvertierung als Vorverarbeitung der einzelnen Frames in den RGB Farbraum (siehe Kapitel \ref{YUV_RGBKonvert}). Diese Vorverarbeitung wurde im späteren Verlauf überflüssig, da das Übertragungsformat der Videoframes aufgrund der in Kapitel \ref{PerfFunk} genannten Gründen geändert wurde. Der Vollständigkeit halber wird eben genannte Konvertierung hier trotzdem erläutert.
 \\
 \\
 Es wurde davon ausgegangen, dass die Schnittstelle \textit{IFrameProcessor} Byte-Streams im Format NV12 (YUV420) erhält, welche zur weiteren Verarbeitung zunächst in den RGB Farbraum überführt werden mussten, um dann als \textit{Bitmap}-Objekte weiterverarbeitet werden zu können. Die NV12 Byte-Streams liegen im YUV-Farbmodell (siehe Kapitel \ref{YUV_RGBKonvert}) vor. 
@@ -29,7 +29,7 @@ Die in Abbildung \ref{fig:YUV_to_RGB} gezeigte Methode \textit{convertYUVtoRGB(.
 \end{figure}
 
 ~\\
-Wie bereits weiter oben erwähnt, wurde die eben beschriebene Konvertierung obsolet, da der \textit{IFrameProcessor}-Schnittstelle aus in \textbf{Kapitel X} genannten Gründen direkt die einzelnen Videoframes als \textit{Bitmap}-Objekte im RGB565 Format geliefert bekommt. Diese Frames beinhalten das unveränderte Bildmaterial des Ultraschallgeräts, wie es auf dessen Monitor angezeigt wird. Da nicht alle Komponenten des Bildes relevant für die Erfüllung der in \textbf{Kapitel X} beschriebenen Anforderungen sind, erfolgt zunächst eine Auswahl der relevanten Ausschnitte des Bildes, um diese anschließend gemäß der Konzeptzeichnung (siehe Abbildung \ref{fig:Ausgabeframe}) neu anzuordnen. 
+Wie bereits weiter oben erwähnt, wurde die eben beschriebene Konvertierung obsolet, da der \textit{IFrameProcessor}-Schnittstelle aus in Kapitel \ref{PerfFunk} genannten Gründen direkt die einzelnen Videoframes als \textit{Bitmap}-Objekte im RGB565 Format geliefert bekommt. Diese Frames beinhalten das unveränderte Bildmaterial des Ultraschallgeräts, wie es auf dessen Monitor angezeigt wird. Da nicht alle Komponenten des Bildes relevant für die Erfüllung der in Kapitel \ref{FunkAnf} beschriebenen Anforderungen sind, erfolgt zunächst eine Auswahl der relevanten Ausschnitte des Bildes, um diese anschließend gemäß der Konzeptzeichnung (siehe Abbildung \ref{fig:Ausgabeframe}) neu anzuordnen. 
 
 \begin{figure}[h]
 	\centering

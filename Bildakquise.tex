@@ -37,7 +37,7 @@ Wenn als Übertragungsmedium WLAN genutzt wird und der 802.11ac\footcite{WIFISta
 \section{Dekodierung}
 Die Dekodierung rekonstruiert aus dem übertragenen Datenstrom die ursprünglichen Frames und gibt sie an zur Weiterverarbeitung und Anzeige frei. Dieser Prozessschritt wird auf dem Smartphone durchgeführt, da er erst nach der Datenübertragung stattfinden kann.
 
-\section{Implementierung mit FFmpeg}
+\section{Implementierung mit FFmpeg} \label{ImplFFmpeg}
 Im Verlaufe des Projektes wurden zwei verschiedene Ansätze implementiert und getestet. Bei dem ersten Ansatz wurden die Schritte der Bildakquise und Kodierung unter Zuhilfenahme der FFmpeg-Bibliothek\footcite{FFmpeg} realisiert, während zur Dekodierung unter anderem die Android MediaCodec Api\footcite{AndroidMediaCodec} genutzt wurde.\\
 Die FFmpeg-Bibliothek bietet die Möglichkeit, über einen Kommandozeilenbefehl den aktuellen Bildschirminhalt als Videostream abzugreifen sowie die entstehenden Daten mit diversen Videocodecs zu kodieren. Der resultierende Datenstrom kann über die unter Linux vorhandene Pipe-Funktionalität in einen gesonderten Prozess umgeleitet werden, welcher die Übertragung bewerkstelligt.\\
 \begin{figure}[H]
@@ -152,7 +152,7 @@ private void configureCodec()
 }
 \end{lstlisting}
 
-\subsection{Performance und Funktionalität}
+\subsection{Performance und Funktionalität} \label{PerfFunk}
 Die Implementierung mit den vorgestellten Methoden und Ansätzen funktionierte auf den Testgeräten nur eingeschränkt. Die Performance war zwar, sowohl auf dem Ultraschallgerät als auch auf dem Smartphone, sehr zufriedenstellend und das Datenaufkommen minimal, die Latenz der Gesamtlösung lag jedoch bei mehr als 2000 mS. Eine Echtzeitanwendung ist damit nur sehr eingeschränkt möglich, da Veränderungen des Ultraschallbildes erst mit einer großen Verzögerungen auf dem Smartphone angezeigt werden.\\
 Die Latenz konnte auch durch Die Nutzung anderer alternativer Übertragungsformen und Videocodecs nur unzureichend verringert werden, da alleine das \textit{x11grab}-Device zur Aufnahme des Bildschirminhaltes eine Latenz von 800 mS erzeugte. \\
 

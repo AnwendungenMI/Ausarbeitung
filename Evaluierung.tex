@@ -1,7 +1,7 @@
 \chapter{Evaluierung} \label{Evaluierung}
 Um den Erfolg/Misserfolg, bzw. den praktischen Nutzen dieses Projektes werten und bemessen zu können, wurde eine Evaluierung durchgeführt. Da für die einzelnen Komponenten des Projektes bereits Unit-Tests geschrieben und durchgeführt wurden, und diese in den jeweiligen Kapiteln erläutert sind, befassen wir uns hier ausschließlich mit der Evaluierung des Endproduktes und dessen Anwendung.
 \section{Konzept}
-Um die Anforderungen aus \textbf{Kapitel X} evaluieren zu können, benötigt es ein Konzept, welches der klinischen Anwendung so nah wie möglich kommt. Zudem müssen Möglichkeiten geschaffen werden, messen zu können inwiefern und wie exakt die Anforderungen erfüllt wurden. Es muss also erstens überprüft werden, ob die Positionen geschallter Objekte mit den projizierten Positionen auf dem Ultraschallbild übereinstimmen. Zudem müssen ebenfalls Distanzen und Größen zwischen realen Objekten und den projizierten Objekten übereinstimmen. Das zu erreichende Ziel ist schließlich, den Effekt zu erzielen, dass die Projektion des Ultraschallbildes eines Objekts das reale Objekt exakt überlagert. 
+Um die Anforderungen aus Kapitel \ref{AnfAnalyse} evaluieren zu können, benötigt es ein Konzept, welches der klinischen Anwendung so nah wie möglich kommt. Zudem müssen Möglichkeiten geschaffen werden, messen zu können inwiefern und wie exakt die Anforderungen erfüllt wurden. Es muss also erstens überprüft werden, ob die Positionen geschallter Objekte mit den projizierten Positionen auf dem Ultraschallbild übereinstimmen. Zudem müssen ebenfalls Distanzen und Größen zwischen realen Objekten und den projizierten Objekten übereinstimmen. Das zu erreichende Ziel ist schließlich, den Effekt zu erzielen, dass die Projektion des Ultraschallbildes eines Objekts das reale Objekt exakt überlagert. 
 \\
 Um eben aufgezählte Messungen vornehmen zu können benötigte es zunächst ein Testobjekt. Hierbei entschieden wir uns für die Variante einer Gelatineplatte als Phantom, in den zwei Münzen bekannter Größe und Distanz zueinander integriert wurden (siehe Kapitel \ref{Phantom}). 
 \clearpage
@@ -30,7 +30,7 @@ Zunächst muss man die Gelatine 10min in 100ml kaltem Wasser quellen lassen. Ans
 \end{figure}
 
 \section{Durchführung}
-Um Ultraschallbilder der Münzen in der Gelatineplatte aufzunehmen, wird auf diese zunächst Ultraschallgel aufgetragen. Anschließend kann mit dem Prototypen (siehe Kapitel \textbf{X}) das Schallen begonnen werden (siehe Abbildung \ref{fig:schallen}). Geschallt wurde auf zwei Arten: Einmal so, dass der Abstand zwischen den Münzen gut sichtbar auf dem Display zu sehen war und einmal direkt über einer Münze, um ihren Durchmesser auf dem Bild abmessen zu können.
+Um Ultraschallbilder der Münzen in der Gelatineplatte aufzunehmen, wird auf diese zunächst Ultraschallgel aufgetragen. Anschließend kann mit dem Prototypen (siehe Kapitel \ref{chap:Prototypen_Bau}) das Schallen begonnen werden (siehe Abbildung \ref{fig:schallen}). Geschallt wurde auf zwei Arten: Einmal so, dass der Abstand zwischen den Münzen gut sichtbar auf dem Display zu sehen war und einmal direkt über einer Münze, um ihren Durchmesser auf dem Bild abmessen zu können.
 \clearpage
 \begin{figure}[h]
 	\centering
@@ -50,7 +50,7 @@ Beim Schallen einer einzelnen Münze konnte die korrekte Tiefe von 1,3cm der Mü
 \end{figure}
 
 ~\\
-Bei diesem ersten Test fiel auf, dass sich die Projektion optisch nicht mit der Münze überlagert. Der Grund hierfür ist, die Distanzen von Ultraschallbild zum Spiegel und Schallkopfende zum Spiegel nicht wie in Kapitel \textbf{X} gefordert und beschrieben übereinstimmten. Der Abstand zwischen Spiegel und Schallkopf beträgt 3,4cm. Der Abstand zwischen Spiegel und Schallbild nur 2,3cm. Um diesen Fehler zu beheben wurde das Ultraschallbild in der Anzeige auf dem Display weiter nach oben verschoben, um die Distanzen \textit{d} zwischen Schallkopf und Spiegel und Schallbild und Spiegel anzugleichen (siehe Abbildung \ref{fig:Prototyp_Evaluierung}). Beide Abstände sind nun identisch und betragen 3,4cm.
+Bei diesem ersten Test fiel auf, dass sich die Projektion optisch nicht mit der Münze überlagert. Der Grund hierfür ist, die Distanzen von Ultraschallbild zum Spiegel und Schallkopfende zum Spiegel nicht wie in Kapitel \ref{chap:Prototypen_Bau} gefordert und beschrieben übereinstimmten. Der Abstand zwischen Spiegel und Schallkopf beträgt 3,4cm. Der Abstand zwischen Spiegel und Schallbild nur 2,3cm. Um diesen Fehler zu beheben wurde das Ultraschallbild in der Anzeige auf dem Display weiter nach oben verschoben, um die Distanzen \textit{d} zwischen Schallkopf und Spiegel und Schallbild und Spiegel anzugleichen (siehe Abbildung \ref{fig:Prototyp_Evaluierung}). Beide Abstände sind nun identisch und betragen 3,4cm.
 \\
 Die relevanten Distanzen sind dabei in der Abbildung \ref{fig:Prototyp_Evaluierung} grün dargestellt, das Ultraschallbild auf dem Smartphone-Display violett.
 \clearpage
@@ -62,7 +62,7 @@ Die relevanten Distanzen sind dabei in der Abbildung \ref{fig:Prototyp_Evaluieru
 \end{figure}
 
 ~\\
-Nachdem oben beschriebene Anpassungen vorgenommen wurden, wurde ein zweiter Testlauf gestartet. Da die Distanzen nun übereinstimmten, stimmte nun auch die Position der Projektion auf der Gelatineplatte. Dieses Mal wurde der Ultraschallkopf so geführt, dass beide Münzen auf dem Bild zu sehen sind und der Abstand zwischen diesen überprüft werden konnte. Der reale Abstand zwischen den Münzen beträgt, wie in Kapitel \ref{Versuchsaufbau} beschrieben, 2,5cm. Gemessen wurde, wie in Abbildung \textbf{X} zu erkennen ist, ebenfalls ein Abstand von 2,5cm.
+Nachdem oben beschriebene Anpassungen vorgenommen wurden, wurde ein zweiter Testlauf gestartet. Da die Distanzen nun übereinstimmten, stimmte nun auch die Position der Projektion auf der Gelatineplatte. Dieses Mal wurde der Ultraschallkopf so geführt, dass beide Münzen auf dem Bild zu sehen sind und der Abstand zwischen diesen überprüft werden konnte. Der reale Abstand zwischen den Münzen beträgt, wie in Kapitel \ref{Versuchsaufbau} beschrieben, 2,5cm. Gemessen wurde, wie in Abbildung \ref{fig:2Muenzen} zu erkennen ist, ebenfalls ein Abstand von 2,5cm.
 \clearpage
 \begin{figure}[h]
 	\centering
