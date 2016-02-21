@@ -1,21 +1,21 @@
 \chapter{Risiko- und Anforderungsanalyse}
 Dieser Bereich umfasst die durchgeführte Risikoanalyse für dieses Projekt. Die Risikoanalyse beinhaltet die Risikoidentifikation, die Risikokategorisierung und die Risikobehandlung. Im Anschluss an die Risikoanalyse wird die Anforderungsanalyse beschrieben, in der die funktionalen und nichtfunktionalen Anforderungen definiert werden. 
 \section{Risikoanalyse} \label{RisikoAnalyse}
-Um während der Entwicklung und Umsetzung des Projekts nicht von projekt- \linebreak 
-gefährdenden Risiken überrascht zu werden, wurde vor der Entwicklung eine Risikoanalyse durchgeführt und entsprechende Maßnahmen geplant.Die durchgeführte Risikoanalyse umfasst drei Bereiche; die Risikoidentifizierung, die Risikokategorisierung und die Risikobehandlung. Die Risikoidentifikation dient der Erfassung möglicher auftretender Risiken. Diese werden in der Risikokategorisierung analysiert und Risikoklassen zugeordnet, um die Auswirkung auf die Umsetzung festzustellen. In der Risikobehandlung werden anschließend für jedes Risiko entsprechende (Gegen-) Maßnahmen oder alternative Lösungsansätze geplant, die während der Umsetzung angewendet werden.\\
+Um während der Entwicklung und Umsetzung des Projekts nicht von projektgefähr"-denden Risiken überrascht zu werden, wurde vor der Entwicklung eine Risikoanalyse durchgeführt und entsprechende Maßnahmen geplant. Die durchgeführte Risikoanalyse umfasst drei Bereiche; die Risikoidentifizierung, die Risikokategorisierung und die Risikobehandlung. Die Risikoidentifikation dient der Erfassung auftretender Risiken. Diese werden in der Risikokategorisierung analysiert und Risikoklassen zugeordnet, um die Auswirkung auf die Umsetzung festzustellen. In der Risikobehandlung werden anschließend für jedes Risiko entsprechende (Gegen-) Maßnahmen oder alternative Lösungsansätze geplant, die während der Umsetzung angewendet werden.\\
 Für die Risikoanalyse wurden die einzelnen Komponenten des Projekts separat analysiert und die auftretenden Risiken identifiziert. Die benötigte/ verwendete Hardware dieses Projekts besteht aus den folgenden Komponenten:
 \begin{itemize}
 \item Das Ultraschallgerät/ Sonoscape, auf dem die Ultraschallbilder generiert werden.
-\item Das mobile Endgerät, für das eine Anwendung zur Anzeige der Ultraschallbilder implementiert wird.
-\item Die Halterung für die Befestigung des mobilen Endgerätes und des Teilerspiegels an dem Ultraschallkopf.
+\item Das mobile Endgerät, für das eine Anwendung zur Verarbeitung und Anzeige der Ultraschallbilder implementiert wird.
+\item Die Halterung für die Befestigung des mobilen Endgerätes und des Teilerspiegels an der Ultraschallsonde.
 \end{itemize}
 
 \subsection{Risikoidentifizierung}
-Die nachfolgende Tabelle \ref{tab:Risikoidentifizierung} umfasst die Voraussetzung/ Umsetzung, bei der entsprechende Risiken auftreten können. Insgesamt wurden 11 Risiken ermittelt, die eine Realisierung des Projekts gefährden. Diese werden in der nachfolgenden Tabelle vorgestellt. Die Tabelle umfasst eine zugeordnete Risikoidentifikation (RisikoID), eine Beschreibung der Voraussetzung/ Umsetzung sowie das zugehörige Risiko. 
+Die nachfolgende Tabelle \ref{tab:Risikoidentifizierung} umfasst die Voraussetzung/ Umsetzung, bei der entsprechende Risiken auftreten können. Insgesamt wurden elf Risiken ermittelt, die eine Realisierung des Projekts gefährden. Diese werden in der nachfolgenden Tabelle vorgestellt. Die Tabelle umfasst eine zugeordnete Risikoidentifikation (RisikoID), eine Beschreibung der Voraussetzung/ Umsetzung sowie das zugehörige Risiko. 
 
 \begin{center}
 \begin{table} [H]
-    \begin{tabular}{ | p{0.1\textwidth} | p{0.45\textwidth} | p{0.45\textwidth} |}
+\small
+    \begin{tabular}{ | p{0.1\textwidth} | p{0.4\textwidth} | p{0.4\textwidth} |}
     \hline
    \textbf{RisikoID} &  \textbf{Voraussetzung/ Umsetzung} & \textbf{Risiko}\\
       \hline
@@ -61,7 +61,7 @@ Die nachfolgende Tabelle \ref{tab:Risikoidentifizierung} umfasst die Voraussetzu
 	\hline
 	11	
 	& Die Vorrichtung muss  an einer festgelegten Stelle fixiert und befestigt werden, um eine exakte Überlagerung der Bilddaten mit der Realität zu realisieren.	
-	& Kann die Vorrichtung an dem Ultraschallkopf angebracht werden? \\
+	& Kann die Vorrichtung an der Ultraschallsonde angebracht werden? \\
 \hline
   
     \end{tabular}
@@ -77,17 +77,17 @@ In der Risikokategorisierung werden die identifizierten Risiken in bestimmte Ris
 \item GELB = kritisch
 \item GRÜN = unkritisch
 \end{itemize}
-Von den ermittelten 11 Risiken haben sieben Risiken eine projektgefährdende Auswirkung. Diese Risiken wurden daher mit einer hohen Priorität versehen und frühzeitig während der Projektrealisierung behandelt. Hierfür wurden entsprechende Maßnahmen bzw. alternative Lösungen entworfen, die eine Projektumsetzung ermöglichen oder die Auswirkungen eines Risikos minimieren. 
-\begin{figure}[h]
+Von den ermittelten elf Risiken haben sieben Risiken eine projektgefährdende Auswirkung. Diese Risiken wurden daher mit einer hohen Priorität versehen und früh"-zeitig während der Projektrealisierung behandelt. Für alle Risiken wurden entsprechende Maßnahmen bzw. alternative Lösungen entworfen, die eine Projektumsetzung ermöglichen oder die Auswirkungen eines Risikos minimieren (siehe Kapitel \ref{Risikobeh}). 
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{Bilder/Risiko_und_Anforderungsanalyse/Risikokategorisierung.png}
 	\caption{Risikokategorisierung}
 	\label{fig:risikokategorisierung}
 \end{figure}
 
-\subsection{Risikobehandlung}
-Für jedes identifizierte Risiko wurden entsprechende Maßnahmen geplant, die im Laufe der Projektrealisierung umgesetzt wurden. Hierbei ging es vor allem um die Beschaffung des Zugriffs auf das Ultraschallgerät, die Installation von benötigten Treibern und zusätzlicher Software, die Extraktion der Ultraschallbilder, der Netzwerkzugriff des Ultraschallgeräts und die Konstruktion einer stabilen Halterung, die an dem Ultraschallkopf befestigt werden kann. Die entsprechenden Maßnahmen reichten hierbei von der Konsultation und Kommunikation mit dem Gerätehersteller über die Analyse der beteiligten Komponenten bis hin zur Umsetzung von Prototypen während der Planung und der Realisierung des Projektes. \\ 
-Der entwickelte Projektplan für dieses Projekt umfasst fünf Hauptbereiche, in denen die verschiedenen Arbeitsschritte für das Projektteam festgelegt  und während der Projektdurchführung umgesetzt wurden. Die fünf Hauptbereiche bestehen aus: 
+\subsection{Risikobehandlung} \label{Risikobeh}
+Für jedes identifizierte Risiko wurden entsprechende Maßnahmen geplant, die im Laufe der Projektrealisierung umgesetzt wurden. Hierbei ging es vor allem um die Beschaffung des Zugriffs auf das Ultraschallgerät, die Installation von benötigten Treibern und zusätzlicher Software, die Extraktion der Ultraschallbilder, der Netzwerkzugriff des Ultraschallgeräts und die Konstruktion einer stabilen Halterung, die an der Ultraschallsonde befestigt werden kann. Die entsprechenden Maßnahmen reichten hierbei von der Konsultation und Kommunikation mit dem Gerätehersteller über die Analyse der beteiligten Komponenten bis hin zur Umsetzung von Prototypen während der Planung und der Realisierung des Projektes. \\ 
+Zu beginn des Projekts wurde ein Projektplan erstellt, der aus Übersichtlichkeits"-gründen nicht komplett angezeigt wird, dieser ist aber im Anhang zu finden (siehe \ref{AnhangA}). Der entwickelte Projektplan umfasst fünf Hauptbereiche, in denen die verschiedenen Arbeitsschritte für das Projektteam festgelegt  und während der Projektdurchführung umgesetzt wurden. Die fünf Hauptbereiche bestehen aus: 
 \begin{enumerate}
 \item der Recherche und der Vorbereitung,
 \item dem Eignungstest des vorhandenen Ultraschallgerätes,
@@ -100,14 +100,15 @@ Der entwickelte Projektplan für dieses Projekt umfasst fünf Hauptbereiche, in 
 \item und der Evaluierung
 \end{enumerate}
 
-Diese Hauptbereiche umfassen insgesamt 44 weitere Arbeitspakete, in denen die Umsetzung strukturiert und geplant wurde. Aus Übersichtlichkeitsgründen wurde auf die Anzeige des kompletten Projektplans verzichtet, dieser ist aber im Anhang zu finden (siehe \ref{AnhangA}). In der nachfolgenden Tabelle \ref{tab:Risikomassnahmen} sind die zugehörigen Arbeitspakete sowie die geplanten Maßnahmen angegeben, die durchgeführt wurden.
+Diese Hauptbereiche umfassen insgesamt 44 weitere Arbeitspakete, in denen die Umsetzung strukturiert und geplant wurde. In der nachfolgenden Tabelle \ref{tab:Risikomassnahmen} sind die zugehörigen Arbeitspakete sowie die geplanten Maßnahmen angegeben, die durchgeführt wurden.
 
 \begin{center}
 \begin{minipage}{1\textwidth}
 \begin{table} [H]
-    \begin{tabular}{ | p{0.1\textwidth} | p{0.6\textwidth} | p{0.3\textwidth} | } 
+\small
+    \begin{tabular}{ | p{0.1\textwidth} | p{0.5\textwidth} | p{0.3\textwidth} | } 
     \hline
-   \textbf{RisikoID} &  \textbf{Maßnahme(n)} & \textbf{Arbeitspaket} \\
+   \textbf{RisikoID} &  \textbf{Maßnahme(n)} & \textbf{Arbeitspaket(e)} \\
       \hline
 1	&Konsultation und Kommunikation mit dem Gerätehersteller	& Systemzugriff (4) \\
 \hline
@@ -141,7 +142,7 @@ Analyse der benötigten Materialen, Prototyping	& Halterung/ Hardware konstruier
 \end{center}
 
 \section{Anforderungsanalyse}  \label{AnfAnalyse}
-Die Anforderungsanalyse umfasst die Definition der funktionalen und der nichtfunktionalen Anforderungen für das Projekt. Im folgenden Abschnitt 2.2.1 werden die funktionalen Anforderungen für die einzelnen Bereiche „Sonoscape/ Ultraschallgerät“, „Datenübertragung“, „mobile Applikation“, „Bildverarbeitung“ und die „grafische Benutzeroberfläche“ festgelegt. Die nichtfunktionalen Anforderungen in Abschnitt 2.2.2 umfassen die Bereiche "mobiles Endgerät", "Halterung" und "Darstellung der Ultraschallbilder". In diesen Abschnitten werden die  Funktionalitäten definiert, welche die gesamte Anwendung erfüllen „muss“ (Absolute Gültigkeit), „soll“ (Empfehlung) oder „kann“ (Optional).   
+Die Anforderungsanalyse umfasst die Definition der funktionalen und der nichtfunktionalen Anforderungen für das Projekt. Im folgenden Abschnitt 2.2.1 werden die funktionalen Anforderungen für die einzelnen Bereiche „Sonoscape/ Ultraschallgerät“, „Datenübertragung“, „mobile Applikation“, „Bildverarbeitung“ und die „grafische Benutzeroberfläche“ festgelegt. Die nichtfunktionalen Anforderungen in Abschnitt 2.2.2 umfassen die Bereiche "mobiles Endgerät", "Halterung\grqq und "Darstellung der Ultraschallbilder". In diesen Abschnitten werden die  Funktionalitäten definiert, welche die gesamte Anwendung erfüllen „muss“ (absolute Gültigkeit), „soll“ (Empfehlung) oder „kann“ (optional).   
 \subsection{Funktionale Anforderungen} \label{FunkAnf}
 \begin{minipage}{\textwidth}
 Sonoscape/ Ultraschallgerät
@@ -149,7 +150,7 @@ Sonoscape/ Ultraschallgerät
 \item Das erstellte Ultraschallbild muss in derselben Auflösung extrahiert werden können, in der es vom Ultraschallgerät generiert wurde.
 \item Das Ultraschallgerät muss um eine Netzwerkkomponente für den Netzwerkzugriff ergänzt werden.
 \item Das Sonoscape muss um eine Serverfunktionalität ergänzt werden, über die die Ultraschallbilder übertragen werden.
-\item Die extrahierten Bilder/ Frames des Ultraschallgerätes müssen vor der Übertragung in ein entsprechendes Format konvertiert werden.
+\item Die extrahierten Bilder/ Frames des Ultraschallgerätes müssen vor der Übertragung in ein entsprechendes Format konvertiert werden.\\
 \end{itemize}
 \end{minipage}
 
@@ -171,7 +172,7 @@ Mobile Applikation
 \item Die mobile Applikation muss über einen festgelegten Port auf eingehende Daten lauschen.
 \item Die mobile Applikation muss die Konvertierung des ankommenden Bytestreams in ein entsprechendes Format durchführen.
 \item Die verarbeiteten Frames müssen auf der Benutzeroberfläche angezeigt werden. Anschließend müssen die Frames gelöscht werden und der belegte Speicherplatz wieder freigegeben werden. 
-\item Bei der Verwendung der mobilen Applikation kann der Benutzer über einen Verbindungsabbruch oder einen Datenverlust informiert werden.
+\item Bei der Verwendung der mobilen Applikation kann der Benutzer über einen Verbindungsabbruch oder einen Datenverlust informiert werden.\\
 \end{itemize}
 \end{minipage}
 
@@ -179,7 +180,7 @@ Mobile Applikation
 Bildverarbeitung
 \begin{itemize}
 \item Die Bildverarbeitung muss innerhalb der mobilen Anwendung realisiert werden.
-\item Die Bildverarbeitung muss die relevanten Informationen des Ultraschallbildes durch das Ausschneiden und die Zusammensetzung eines neuen Frames bereitstellen.
+\item Die Bildverarbeitung muss die relevanten Informationen des Ultraschallbildes durch das Ausschneiden und die Zusammensetzung eines neuen Frames bereitstellen.\\
 \end{itemize}
 \end{minipage}
 
@@ -200,8 +201,8 @@ Mobiles Endgerät
 \item Das Gewicht soll höchstens 400 Gramm betragen.
 \item Das Gerät muss über eine Netzwerkschnittstelle (WLAN (802.11)) verfügen.
 \item Das Gerät muss über einen Beschleunigungssensor und ein Gyroskop verfügen.
-\item Das Gerät muss über ausreichend Rechenleistung für die Bilddecodierung, Bildverarbeitung, Bildanzeige und min. 4 Kerne (Quad-Core) verfügen.
-\item Das Gerät muss auf einem offenen Betriebssystem basieren, für das unentgeltlich Programme implementiert und installiert werden können.
+\item Das Gerät muss über ausreichend Rechenleistung für die Bilddecodierung, Bildverarbeitung, Bildanzeige verfügen und min. vier Kerne (Quad-Core) besitzen.
+\item Das Gerät muss auf einem offenen Betriebssystem basieren, für das unentgeltlich Programme implementiert und installiert werden können.\\
 \end{itemize}
 \end{minipage}
 
@@ -209,8 +210,8 @@ Mobiles Endgerät
 Halterung
 \begin{itemize}
 \item Es müssen nahezu identische Lichtverhältnisse auf beiden Seiten des Teilerspiegels existieren. Evtl. kann dazu eine zusätzliche Lichtquelle installiert werden.
-\item Das Gewicht der kompletten Halterung (mobiles Endgerät, Teilerspiegel, Material zur Befestigung)  soll 400 Gramm nicht überschreiten.
-\item Um den festgelegten Winkel zw. mobilem Endgerät, Auge des Betrachters und dem Objekt nicht zu verändern muss ein starres Material verwendet werden.
+\item Das Gewicht der kompletten Halterung (mobiles Endgerät, Teilerspiegel, Material zur Befestigung)  soll 500 Gramm nicht überschreiten.
+\item Um den festgelegten Winkel zw. mobilem Endgerät, dem Teilerspiegel und der Sonde nicht zu verändern muss ein starres Material verwendet werden.\\
 \end{itemize}
 \end{minipage}
 
