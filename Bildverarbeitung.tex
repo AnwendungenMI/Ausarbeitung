@@ -3,7 +3,7 @@
 Die Bildverarbeitung besteht im Wesentlichen aus der Generierung von einzelnen Videoframes im RGB565 – Bitmap Format, welche optisch den Anforderungen aus Kapitel \ref{FunkAnf} entsprechen müssen. Die einzelnen Videoframes werden von der Schnittstelle \textit{IFrameProvider} empfangen und nach der Verarbeitung an die Schnittstelle \textit{FrameViewer} zur Darstellung auf dem Display des Smartphones weitergereicht.
 \\
 \\
-Im ersten Ansatz, der verfolgt wurde, benötigte es eine Konvertierung als Vorverarbeitung der einzelnen Frames in den RGB Farbraum (siehe Kapitel \ref{YUV_RGBKonvert}). Diese Vorverarbeitung wurde im späteren Verlauf überflüssig, da das Übertragungsformat der Videoframes aufgrund der in Kapitel \ref{PerfFunk} genannten Gründen geändert wurde. Der Vollständigkeit halber wird eben genannte Konvertierung hier trotzdem erläutert.
+Im ersten Ansatz, der verfolgt wurde, war eine Konvertierung notwendig als Vorverarbeitung der einzelnen Frames in den RGB Farbraum (siehe Kapitel \ref{YUV_RGBKonvert}). Diese Vorverarbeitung wurde im späteren Verlauf überflüssig, da das Übertragungsformat der Videoframes aufgrund der in Kapitel \ref{PerfFunk} genannten Gründen geändert wurde. Der Vollständigkeit halber wird die eben genannte Konvertierung hier trotzdem erläutert.
 \\
 \\
 Es wurde davon ausgegangen, dass die Schnittstelle \textit{IFrameProcessor} Byte-Streams im Format NV12 (YUV420) erhält, welche zur weiteren Verarbeitung zunächst in den RGB Farbraum überführt werden mussten, um dann als \textit{Bitmap}-Objekte weiterverarbeitet werden zu können. Die NV12 Byte-Streams liegen im YUV-Farbmodell (siehe Kapitel \ref{YUV_RGBKonvert}) vor. 
@@ -138,7 +138,7 @@ private Bitmap buildFinalFrame() {
 
 
 ~\\
-Um die Unschönheit zu vermeiden, dass bereits vor dem Schallen Frames der Auswahlfenster der SonoScape-Software verarbeitet und zur Anzeige auf das Display des Smartphones gebracht werden, wurde eine Methode geschrieben, welche überprüft ob die SonoScape-Software in den Schall-Modus gewechselt ist. Diese Überprüfung geschieht simpel über einen Farbvergleich von Pixeln. Es wurden Pixel an Positionen gewählt, bei denen davon auszugehen ist, dass ihre Farbe schwarz ist, solange sich die SonoScape-Software im Schall-Modus befindet.  
+Um zu vermeiden, dass bereits vor dem Schallen Frames der Auswahlfenster der SonoScape-Software verarbeitet und zur Anzeige auf das Display des Smartphones gebracht werden, wurde eine Methode geschrieben, welche überprüft ob die SonoScape-Software in den Schall-Modus gewechselt ist. Diese Überprüfung geschieht simpel über einen Farbvergleich von Pixeln. Es wurden Pixel an Positionen gewählt, bei denen davon auszugehen ist, dass ihre Farbe schwarz ist, solange sich die SonoScape-Software im Schall-Modus befindet.  
 \\
 \\
 Zum isolierten Testen der Bildverarbeitung im \textit{IFrameProcessor} wurde eine Testklasse \textit{FrameProcessorImplTest} geschrieben, welche einzelne Testframes als BIN-Dateien, die zuvor mit dem Ultraschallgerät aufgenommen wurden, aus dem SD-Kartenspeicher des Smartphones (oder des Emulators) lädt und diese zum Verarbeiten an die \textit{IFrameProcessor}-Schnittstelle weiterleitet. Für die Evaluierung der Bildverarbeitung wurden die bearbeiteten Frames anschließend als PNG-Dateien wieder in den SD-Kartenspeicher geschrieben. 
