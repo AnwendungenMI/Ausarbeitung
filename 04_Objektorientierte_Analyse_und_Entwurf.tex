@@ -7,7 +7,7 @@ Das folgende abgebildete Komponentendiagramm \ref{fig:Komponentendiagramm} zeigt
 \begin{figure}[H] 
 \centering
 \includegraphics[width=1\textwidth, height = 1\textheight]{Bilder/objektorientierteAnalyseundEntwurf/KD_Komponentendiagramm}
-\caption{{\small Komponentendiagramm SonicPhone}}
+\caption{{\small Komponentendiagramm des gesamten Systems}}
 \label{fig:Komponentendiagramm}
 \end{figure}
 
@@ -18,7 +18,7 @@ Die Datenübertragung wird durch die Implementierung eines Servers auf dem Ultra
 \begin{figure}[H] 
 \centering
 \includegraphics[width=1\textwidth]{Bilder/objektorientierteAnalyseundEntwurf/SD_Datenuebertragung}
-\caption{{\small Datenübertragung SonicPhone}}
+\caption{{\small Datenübertragung zw. Ultraschallgerät und der mobilen Applikation}}
 \label{fig:SD_Datenuebertragung}
 \end{figure}
 
@@ -27,17 +27,17 @@ Das folgende Sequenzdiagramm \ref{fig:SD_Datenverarbeitung} veranschaulicht die 
 \begin{figure}[H] 
 \centering
 \includegraphics[width=1\textwidth]{Bilder/objektorientierteAnalyseundEntwurf/SD_Datenverarbeitung}
-\caption{{\small Datenverarbeitung mobile Applikation}}
+\caption{{\small Datenverarbeitung in der mobilen Applikation}}
 \label{fig:SD_Datenverarbeitung}
 \end{figure}
 
 \section{Objektorientierter Entwurf}
-Die Überführung der Ergebnisse der objektorientierten Analyse in den  objektorientierten Entwurf werden dafür verwendet eine konkrete Softwarearchitektur zu erstellen, die als direkte Implementierungsvorlage dient. Im Folgenden wird die Softwarearchitektur in Form eines Klassendiagramms dargestellt. \\
+Die Überführung der Ergebnisse der objektorientierten Analyse in den  objektorientierten Entwurf werden dafür verwendet eine konkrete Softwarearchitektur zu erstellen, die als direkte Implementierungsvorlage dient. Im Folgenden wird die Softwarearchitektur in Form eines Klassendiagramms dargestellt. Da das Betriebssystem des Smartphone LG G4 das Android Betriebsystem der Version 5.1 ist (vgl. Abschnitt \ref{LGG4}), wird die mobile Applikation unter Verwendung des Android SDKs (vgl. Abschnitt \ref{Android}) in der Programmiersprache Java implementiert.  \\
 Das nachfolgend abgebildete Klassendiagramm \ref{fig:cd_mobileApplikation} beschreibt sämtliche Klassen und deren Beziehungen untereinander, die angelegt werden, um die mobile Applikation zu realisieren. Aus Rücksicht auf die Übersichtlichkeit wurde auf die Abbildung sämtlicher Get- und Set- Methoden verzichtet. In der Klasse MainActivity werden die Objekte für die Klassen NetworkProvider und FrameProcessorImpl instanziiert. Die NetworkProvider-Klasse erbt die Attribute und Funktionen des Interfaces IFrameProviders und wird um die benötigten Funktionen für den Verbindungsaufbau zum Server (Ultraschallgerät) erweitert. Die FrameProcessorImpl- Klasse erbt von dem Interface IFrameProcessor und erweitert die Funktionalität für den Verarbeitungsprozess der übertragenen Ultraschallbilder. Zur Anzeige der Ultraschallbilder auf der Benutzeroberfläche wurde das vordefinierte ImageView-Widget der Android- API um entsprechende Listener-Methoden erweitert, die eine Eventbehandlung bei Änderungen des ImageViews ermöglichen. Hierdurch kann das ImageView  für eine kontinuierliche Darstellung und anschließende Entfernung sowie Freigabe des benötigten Speicherplatzes der Ultraschallbilder durch eine entsprechende Aktualisierung verwendet werden.  
 
 \begin{figure}[H] 
 \centering
 \includegraphics[width=1\textwidth]{Bilder/objektorientierteAnalyseundEntwurf/cd_mobileApplikation}
-\caption{{\small Klassendiagramm mobile Applikation}}
+\caption{{\small Klassendiagramm der mobilen Applikation}}
 \label{fig:cd_mobileApplikation}
 \end{figure}
