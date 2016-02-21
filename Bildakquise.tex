@@ -4,7 +4,7 @@ Eine der grundlegenden Funktionalitäten des Projektes ist die Anzeige der Bildd
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{Bilder/BildakquiseUndDatenaufbereitung/Bildakquise_schritte.pdf}
-	\caption{Prozessschitte zur Anzeige der der Bilddaten auf dem Zielgerät. Die in diesem Kapitel behandelten Schritte sind farbig markiert.}
+	\caption{Prozessschritte zur Anzeige der der Bilddaten auf dem Zielgerät. Die in diesem Kapitel behandelten Schritte sind farbig markiert.}
 	\label{fig:Bildakquise_schritte}
 \end{figure}
 
@@ -13,7 +13,7 @@ Im vorliegenden Kapitel wird primär auf die Schritte \textit{Bildakquise}, \tex
 \section{Bildakquise}
 Der Prozesschritt der Bildakquise beinhaltet die Ermittlung der Bilddaten von dem Quellgerät. Dabei können, je nach vorhandener Hard- und Softwarekonfiguration, verschiedene Ansätze verfolgt werden.\\
 \\
-Ein möglicher Ansatz ist die Verwendung eines Hardwareadapters (\glqq FrameGrabber\grqq), welcher die Videosignale des Quellgerätes über dessen Videoausgang entgegennimmt und über eine Datenschnittstelle einem verarbeitenden Gerät zur Verfügung stellt. Ein Vorteil dieser Vorgehensweise ist die Simplizität in Bezug auf das Quellgerät. Da das Videosignal über bereits vorhandene, standardisierte Schnittstellen übertragen wird, muss keine Veränderung an der Software des Gerätes vorgenommen werden.\\
+Ein möglicher Ansatz ist die Verwendung eines Hardwareadapters (\glqq FrameGrabber\grqq), welcher die Videosignale des Quellgerätes über dessen Videoausgang entgegennimmt und über eine Datenschnittstelle einem verarbeitenden Gerät zur Verfügung stellt. Ein Vorteil dieser Vorgehensweise ist die Simplizität in Bezug auf das Ultraschallgerät. Da das Videosignal über bereits vorhandene, standardisierte Schnittstellen übertragen wird, muss keine Veränderung an der Software des Gerätes vorgenommen werden.\\
 Im Gegenzug dazu wird jedoch ein weiteres Gerät, welches die Bilddaten entgegennimmt und verarbeitet, benötigt. Damit steigt die Gesamtkomplexität des Systems erheblich an, da statt einem Quell- und einem Zielgerät nunmehr ein Quellgerät, ein Zwischengerät zur Verarbeitung und ein Zielgerät benötigt werden.\\
 
 \begin{figure}[h]
@@ -39,7 +39,7 @@ Die Dekodierung rekonstruiert aus dem übertragenen Datenstrom die ursprünglich
 
 \section{Implementierung mit FFmpeg} \label{ImplFFmpeg}
 Im Verlaufe des Projektes wurden zwei verschiedene Ansätze implementiert und getestet. Bei dem ersten Ansatz wurden die Schritte der Bildakquise und Kodierung unter Zuhilfenahme der FFmpeg-Bibliothek\footcite{FFmpeg} realisiert, während zur Dekodierung unter anderem die Android MediaCodec Api\footcite{AndroidMediaCodec} genutzt wurde.\\
-Die FFmpeg-Bibliothek bietet die Möglichkeit, über einen Kommandozeilenbefehl den aktuellen Bildschirminhalt als Videostream abzugreifen sowie die entstehenden Daten mit diversen Videocodecs zu kodieren. Der resultierende Datenstrom kann über die unter Linux vorhandene Pipe-Funktionalität in einen gesonderten Prozess umgeleitet werden, welcher die Übertragung bewerkstelligt.\\
+Die FFmpeg-Bibliothek bietet die Möglichkeit, über einen Kommandozeilenbefehl den aktuellen Bildschirminhalt als Videostream abzugreifen, sowie die entstehenden Daten mit diversen Videocodecs zu kodieren. Der resultierende Datenstrom kann über die unter Linux vorhandene Pipe-Funktionalität in einen gesonderten Prozess umgeleitet werden, welcher die Übertragung bewerkstelligt.\\
 \begin{figure}[H]
 	\includegraphics[width=1\textwidth]{Bilder/BildakquiseUndDatenaufbereitung/ffmpeg_befehl1.pdf}
 	\caption{FFmpeg-Befehl zur Aufnahme und Speicherung des Bildschirminhaltes.}
@@ -78,7 +78,7 @@ Zur Dekodierung der Daten kann die Android MediaCodec Api genutzt werden. Diese 
 	\label{fig:media_codec}
 \end{figure}
 \footnotetext{\cite{AndroidMediaCodec}}
-Die MediaCodec Api wird genutzt, indem die komprimierten Rohdaten paketweise über Eingabepuffer an den Codec übertragen werden. Nach der Dekodierung werden die resultierenden Frames über die vom Codec zur Verfügung gestellten Ausgabepuffer ausgelesen und angezeigt.\\
+Die MediaCodec Api wird genutzt, indem die komprimierten Rohdaten paketweise über Eingabepuffer an den Codec übertragen werden. Nach der Dekodierung werden die resultierenden Frames über die vom Codec zur Verfügung gestellten Ausgabepuffer ausgelesen und angezeigt (siehe Abbildung \ref{fig:media_codec}.\\
 Da die Daten als kontinuierlicher Datenstrom an das Smartphone gesendet werden, müssen sie vor der Übergabe an den MediaCodec in einzelne Pakete eingeteilt werden. Dabei ist es wichtig, dass die Pakete die erwartete Struktur und den erwarteten Inhalt aufweisen. Diese Eigenschaften sind von dem verwendeten Codec abhängig.\\
 In der vorliegenden Implementierung wurde als Übertragungsformat für die Rohdaten das Annex-B Format genutzt, bei welchem die Daten in sogenannte NALUs\footnote{Network Access Layer Unit} eingeteilt werden. Für den H.264 Codec entspricht somit ein Paket einer NALU.\\
 \begin{figure}[H]
